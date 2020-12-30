@@ -47,7 +47,7 @@ public class University extends AbstractModel {
     }
 
     /**
-     * @return
+     * @return a copy of CaptorsFluids
      */
     public HashMap<TypeCaptor, NavigableSet<Captor>> getAllCaptorsFluid() {
         HashMap<TypeCaptor,NavigableSet<Captor>> copy = new HashMap<TypeCaptor,NavigableSet<Captor>>(this.CaptorFluids);
@@ -55,24 +55,29 @@ public class University extends AbstractModel {
     }
 
     /**
-     * @return
+     * @return a copy of Batiments
      */
     public NavigableSet<Batiment> getBatiment() {
         NavigableSet<Batiment> copy = new TreeSet<Batiment>(this.Batiments);
         return copy;
     }
     
+    /**
+     * @return Nom
+     */
     public String getNom() {
     	return this.Nom;
     }
     
     
+    
+    //methods
     /**
      * @param id 
      * @param value
      */
     public void newValue(String id, float value) {
-        // TODO implement here
+        Captors.get(id).addValue(value);
     }
 
     /**
@@ -99,7 +104,7 @@ public class University extends AbstractModel {
      * @param sup
      */
     public void changeBornes(String id, float inf, float sup) {
-        // TODO implement here
+        this.Captors.get(id).setBornes(inf, sup);
     }
 
 

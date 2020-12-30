@@ -126,7 +126,7 @@ public class Captor {
      * @param inf 
      * @param max
      */
-    public void setBornes(int inf, int max) {
+    public void setBornes(float inf, float max) {
         // TODO implement here
     }
 
