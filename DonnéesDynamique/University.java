@@ -1,6 +1,9 @@
 package DonnéesDynamique;
 
-import java.util.*;
+
+import java.util.NavigableSet;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * 
@@ -18,8 +21,12 @@ public class University extends AbstractModel {
      */
     private String Nom;
 
-
-
+    private NavigableSet<Batiment> Batiments;
+    
+    private HashMap<String,Captor> Captors;
+    
+    private HashMap<TypeCaptor,NavigableSet<Captor>> CapteurFluides;
+    
 
     /**
      * @param nom
@@ -66,7 +73,7 @@ public class University extends AbstractModel {
     /**
      * @return
      */
-    public Map<String,Captor> getAllCaptors() {
+    public HashMap<String,Captor> getAllCaptors() {
         // TODO implement here
         return null;
     }
@@ -74,7 +81,7 @@ public class University extends AbstractModel {
     /**
      * @return
      */
-    public Map<TypeCaptor, ArrayList<Captor>> getAllCaptorsFluid() {
+    public HashMap<TypeCaptor, ArrayList<Captor>> getAllCaptorsFluid() {
         // TODO implement here
         return null;
     }
