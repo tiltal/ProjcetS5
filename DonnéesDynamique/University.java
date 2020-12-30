@@ -11,15 +11,12 @@ import java.util.TreeSet;
  */
 public class University extends AbstractModel {
 
-    /**
-     * Default constructor
-     */
-    public University() {
-    }
+
 
     /**
      * 
      */
+    //attributes
     private String Nom;
 
     private NavigableSet<Batiment> Batiments;
@@ -28,17 +25,48 @@ public class University extends AbstractModel {
     
     private HashMap<TypeCaptor,NavigableSet<Captor>> CaptorFluids;
     
-
     /**
-     * @param nom
+     * Constructor
      */
-    public void University(String nom) {
+    public University(String nom) {
         this.Nom = nom;
         this.Batiments = new TreeSet<>();
         this.Captors = new HashMap<>();
         this.CaptorFluids = new HashMap<>();
     }
 
+    
+    
+    //getters
+    /**
+     * @return a copy of Captors
+     */
+    public HashMap<String,Captor> getAllCaptors() {
+        HashMap<String,Captor> copy = new HashMap<String,Captor>(this.Captors);
+        return copy;
+    }
+
+    /**
+     * @return
+     */
+    public HashMap<TypeCaptor, NavigableSet<Captor>> getAllCaptorsFluid() {
+        HashMap<TypeCaptor,NavigableSet<Captor>> copy = new HashMap<TypeCaptor,NavigableSet<Captor>>(this.CaptorFluids);
+        return copy;
+    }
+
+    /**
+     * @return
+     */
+    public NavigableSet<Batiment> getBatiment() {
+        NavigableSet<Batiment> copy = new TreeSet<Batiment>(this.Batiments);
+        return copy;
+    }
+    
+    public String getNom() {
+    	return this.Nom;
+    }
+    
+    
     /**
      * @param id 
      * @param value
@@ -74,28 +102,7 @@ public class University extends AbstractModel {
         // TODO implement here
     }
 
-    /**
-     * @return
-     */
-    public HashMap<String,Captor> getAllCaptors() {
-        // TODO implement here
-        return null;
-    }
 
-    /**
-     * @return
-     */
-    public HashMap<TypeCaptor, ArrayList<Captor>> getAllCaptorsFluid() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public ArrayList<Batiment> getBatiment() {
-        // TODO implement here
-        return null;
-    }
+    
 
 }
