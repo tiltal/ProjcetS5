@@ -4,6 +4,7 @@ package DonnéesDynamique;
 import java.util.NavigableSet;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 /**
  * 
@@ -25,14 +26,17 @@ public class University extends AbstractModel {
     
     private HashMap<String,Captor> Captors;
     
-    private HashMap<TypeCaptor,NavigableSet<Captor>> CapteurFluides;
+    private HashMap<TypeCaptor,NavigableSet<Captor>> CaptorFluids;
     
 
     /**
      * @param nom
      */
     public void University(String nom) {
-        // TODO implement here
+        this.Nom = nom;
+        this.Batiments = new TreeSet<>();
+        this.Captors = new HashMap<>();
+        this.CaptorFluids = new HashMap<>();
     }
 
     /**
