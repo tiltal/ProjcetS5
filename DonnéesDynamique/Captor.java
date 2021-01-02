@@ -9,8 +9,14 @@ public class Captor {
 
     /**
      * Default constructor
+     * @param id 
+     * @param batiment 
+     * @param etage 
+     * @param lieu 
+     * @param type
      */
-    public Captor() {
+    public Captor(String id, Batiment batiment, int etage, String lieu, TypeCaptor type) {
+        // TODO implement here
     }
 
     /**
@@ -55,17 +61,16 @@ public class Captor {
 
 
 
-
-    /**
-     * @param id 
-     * @param batiment 
-     * @param etage 
-     * @param lieu 
-     * @param type
-     */
-    public void Captor(String id, String batiment, int etage, String lieu, String type) {
-        // TODO implement here
+    
+    
+    public void connexion(){
+    	this.on = true;
     }
+    
+    public void deconnexion(){
+    	this.on = false;
+    }
+
 
     /**
      * @return

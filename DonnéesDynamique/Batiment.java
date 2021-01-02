@@ -10,8 +10,7 @@ public class Batiment {
     /**
      * Default constructor
      */
-    public Batiment() {
-    }
+
 
     /**
      * 
@@ -32,7 +31,7 @@ public class Batiment {
     /**
      * @param name
      */
-    public void Batiment(String name) {
+    public Batiment(String name) {
         // TODO implement here
     }
 

@@ -5,6 +5,7 @@ import java.util.NavigableSet;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.Iterator;
 
 /**
  * 
@@ -33,8 +34,12 @@ public class University extends AbstractModel {
         this.Batiments = new TreeSet<>();
         this.Captors = new HashMap<>();
         this.CaptorFluids = new HashMap<>();
+        Instancing();
     }
-
+    
+    private void Instancing() {
+    	
+    }
     
     
     //getters
@@ -88,7 +93,41 @@ public class University extends AbstractModel {
      * @param type
      */
     public void connexion(String id, String batiment, int etage, String lieu, String type) {
+    	if(! Captors.containsKey(id)) {
+    		newCaptor(id, batiment, etage, lieu, type); 
+    	}
+    	else {
+    		Captors.get(id).connexion();
+    	}
+    }
+    
+    private void newCaptor(String id, String batiment, int etage, String lieu, String type) {
+    	Batiment bat = null;
+        Captor capt;
+        TypeCaptor typec = findType(type);
+        boolean  get = false;
+    	for(Iterator<Batiment> iter = Batiments.iterator(); iter.hasNext() && get == false;) {
+        	bat = iter.next();
+        	if(bat.getName() == batiment) {
+        		get = true;
+        	}
+        }
+    	if(get == false){
+    		bat = new Batiment(batiment);
+    		capt = new Captor(id, bat,etage,lieu,typec);
+    	}
+    	else{
+    		capt = new Captor(id,bat,etage,lieu,typec);
+    	}
+    	
+    	bat.addCaptor(capt);
+    	Captors.put(id, capt);
+    	CaptorFluids.get(typec).add(capt);
+    }
+    
+    private TypeCaptor findType(String type) {
         // TODO implement here
+    	return null;
     }
 
     /**
