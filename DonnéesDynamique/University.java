@@ -92,13 +92,11 @@ public class University extends AbstractModel {
      * @param lieu 
      * @param type
      */
-    public void connexion(String id, String batiment, int etage, String lieu, String type) {
+    public void connection(String id, String batiment, int etage, String lieu, String type) {
     	if(! Captors.containsKey(id)) {
     		newCaptor(id, batiment, etage, lieu, type); 
     	}
-    	else {
-    		Captors.get(id).connexion();
-    	}
+    	Captors.get(id).connexion();
     }
     
     private void newCaptor(String id, String batiment, int etage, String lieu, String type) {
