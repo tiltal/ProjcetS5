@@ -150,7 +150,7 @@ public class University extends AbstractModel {
      * @param id
      */
     public void deconnexion(String id) {
-        // TODO implement here
+        Captors.get(id).deconnexion();
     }
 
     /**
