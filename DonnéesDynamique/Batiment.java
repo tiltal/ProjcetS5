@@ -58,7 +58,7 @@ public class Batiment {
      * @param captor
      */
     public void addCaptor(Captor captor) {
-        // TODO implement here
+        Captors.add(captor);
     }
 
 }
