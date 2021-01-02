@@ -16,7 +16,36 @@ public class Captor {
      * @param type
      */
     public Captor(String id, Batiment batiment, int etage, String lieu, TypeCaptor type) {
-        // TODO implement here
+        this.id = id;
+        this.batiment = batiment;
+        this.etage = etage;
+        this.lieu = lieu;
+        this.type = type;
+        this.on = true;
+        this.etat = 0;
+        switch(this.type) {
+        case EAU:
+        	this.borneMin = 0;
+        	this.borneMax = 10;
+        	break;
+        case ELECTRICITE:
+        	this.borneMin = 10;
+        	this.borneMax = 500;
+        	break;
+
+        case AIRCOMPRIME:
+        	this.borneMin = 17;
+        	this.borneMax = 22;
+        	break;
+
+        default:
+
+        	this.borneMin = 0;
+        	this.borneMax = 5;
+        	break;
+        
+        
+        }
     }
 
     /**
@@ -58,6 +87,8 @@ public class Captor {
      * 
      */
     private String lieu;
+    
+    private TypeCaptor type;
 
 
 
