@@ -44,16 +44,14 @@ public class Batiment {
      * @return
      */
     public String getName() {
-        // TODO implement here
-        return "";
+        return name;
     }
 
     /**
      * @return
      */
-    public Map<Integer, Map<String,Captor>> getCaptors() {
-        // TODO implement here
-        return null;
+    public NavigableSet<Captor> getCaptors() {
+        return Captors;
     }
 
     /**
