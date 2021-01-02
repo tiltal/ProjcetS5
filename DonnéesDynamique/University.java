@@ -126,8 +126,26 @@ public class University extends AbstractModel {
     }
     
     private TypeCaptor findType(String type) {
-        // TODO implement here
-    	return null;
+        TypeCaptor typec;
+    	switch(type) {
+        case "EAU":
+        	typec = TypeCaptor.EAU;
+        	break;
+        case "ELECTRICITE":
+        	typec = TypeCaptor.ELECTRICITE;
+        	break;
+
+        case "AIRCOMPRIME":
+        	typec = TypeCaptor.AIRCOMPRIME;
+        	break;
+
+        default:
+        	typec = TypeCaptor.TEMPERATURE;
+        	break;
+        
+        
+        }
+    	return typec;
     }
 
     /**
