@@ -1,6 +1,8 @@
-package DonnéesDynamique;
+ package DonnéesDynamique;
 
-import java.util.*;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+import java.util.Map;
 
 /**
  * 
@@ -20,19 +22,22 @@ public class Batiment {
     /**
      * 
      */
-    private int Emin;
+    //	private int Emin;
 
     /**
      * 
      */
-    private int Emax;
+    //private int Emax;
 
+    private NavigableSet<Captor> Captors;
 
     /**
      * @param name
      */
     public Batiment(String name) {
-        // TODO implement here
+        this.Captors = new TreeSet<>();
+        this.name = name;
+        
     }
 
     /**
