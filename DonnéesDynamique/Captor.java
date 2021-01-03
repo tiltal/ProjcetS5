@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class Captor {
+public class Captor implements Comparable<Captor> {
 
     /**
      * Default constructor
@@ -107,23 +107,20 @@ public class Captor {
      * @return
      */
     public float getBorneInf() {
-        // TODO implement here
-        return 0.0f;
+        return borneMin;
     }
 
     /**
      * @return
      */
     public float getBorneSup() {
-        // TODO implement here
-        return 0.0f;
+        return borneMax;
     }
 
     /**
      * @return
      */
     public ArrayList<TimedValue> getValues() {
-        // TODO implement here
         return null;
     }
 
@@ -146,16 +143,18 @@ public class Captor {
      * @return
      */
     public int getEtat() {
-        // TODO implement here
-        return 0;
+        return this.etat;
     }
 
     /**
      * @return
      */
     public boolean getOn() {
-        // TODO implement here
-        return true;
+        return this.on;
+    }
+    
+    public String getId() {
+    	return this.id;
     }
 
     /**
@@ -163,7 +162,19 @@ public class Captor {
      * @param max
      */
     public void setBornes(float inf, float max) {
-        // TODO implement here
+    	this.borneMin = inf;
+    	this.borneMax = max;
     }
+
+	@Override
+	public String toString() {
+		return "Captor [id=" + id + ", etat=" + etat + ", on=" + on + ", batiment=" + batiment + ", etage=" + etage
+				+ ", borneMin=" + borneMin + ", borneMax=" + borneMax + ", lieu=" + lieu + ", type=" + type + "]";
+	}
+
+	@Override
+	public int compareTo(Captor capt2) {
+		return this.id.compareTo(capt2.getId());
+	}
 
 }

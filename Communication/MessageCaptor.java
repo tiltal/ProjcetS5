@@ -1,4 +1,4 @@
-package Communcation;
+package Communication;
 
 import java.util.*;
 
