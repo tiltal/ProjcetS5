@@ -1,6 +1,12 @@
-package communication;
+package Communcation;
 
+import java.util.*;
+
+/**
+ * 
+ */
 public class MessageValue extends Message {
+
     /**
      * Default constructor
      */
@@ -17,7 +23,7 @@ public class MessageValue extends Message {
      * @param type 
      * @param value
      */
-    public void MessageValue(String id, TypeMessage type, float value) {
+    public void MessageValue(String id, Type_message type, float value) {
         // TODO implement here
     }
 

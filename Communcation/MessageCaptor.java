@@ -1,8 +1,13 @@
-package communication;
+package Communcation;
 
+import java.util.*;
+
+/**
+ * 
+ */
 public class MessageCaptor extends Message {
 
-	/**
+    /**
      * Default constructor
      */
     public MessageCaptor() {
@@ -36,7 +41,7 @@ public class MessageCaptor extends Message {
      * @param lieu 
      * @param typec
      */
-    public void Message(String id, TypeMessage type, String batiment, int etage, String lieu, String typec) {
+    public void Message(String id, Type_message type, String batiment, int etage, String lieu, String typec) {
         // TODO implement here
     }
 

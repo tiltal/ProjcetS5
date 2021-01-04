@@ -1,7 +1,9 @@
-package donneesDynamique;
+package DonnéesDynamique;
+
 
 import java.util.NavigableSet;
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.Iterator;
 
@@ -36,10 +38,7 @@ public class University extends AbstractModel {
     }
     
     private void Instancing() {
-    	CaptorFluids.put(TypeCaptor.EAU, new TreeSet<Captor>());
-    	CaptorFluids.put(TypeCaptor.AIRCOMPRIME, new TreeSet<Captor>());
-    	CaptorFluids.put(TypeCaptor.ELECTRICITE, new TreeSet<Captor>());
-    	CaptorFluids.put(TypeCaptor.TEMPERATURE, new TreeSet<Captor>());
+    	
     }
     
     
@@ -113,7 +112,6 @@ public class University extends AbstractModel {
         }
     	if(get == false){
     		bat = new Batiment(batiment);
-    		this.Batiments.add(bat);
     		capt = new Captor(id, bat,etage,lieu,typec);
     	}
     	else{
@@ -163,11 +161,6 @@ public class University extends AbstractModel {
     public void changeBornes(String id, float inf, float sup) {
         this.Captors.get(id).setBornes(inf, sup);
     }
-
-	@Override
-	public String toString() {
-		return "University [Nom=" + Nom + ", Batiments=" + Batiments + ", CaptorsF=" + CaptorFluids +"]";
-	}
 
 
     

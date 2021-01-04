@@ -1,5 +1,8 @@
-package donneesDynamique;
+package DonnéesDynamique;
 
+/**
+ * 
+ */
 public enum TypeCaptor {
     EAU,
     ELECTRICITE,
