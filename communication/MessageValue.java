@@ -1,16 +1,16 @@
-package DonnéesDynamique;
+package communication;
 
-import java.time.Clock;
+import java.util.*;
 
 /**
  * 
  */
-public class TimedValue {
+public class MessageValue extends Message {
 
     /**
      * Default constructor
      */
-    public TimedValue() {
+    public MessageValue() {
     }
 
     /**
@@ -18,11 +18,12 @@ public class TimedValue {
      */
     private float value;
 
-
     /**
-     * @param valeur
+     * @param id 
+     * @param type 
+     * @param value
      */
-    public void TimedValue(float valeur) {
+    public void MessageValue(String id, Type_message type, float value) {
         // TODO implement here
     }
 
@@ -32,14 +33,6 @@ public class TimedValue {
     public float getValue() {
         // TODO implement here
         return 0.0f;
-    }
-
-    /**
-     * @return
-     */
-    public Clock getTime() {
-        // TODO implement here
-        return null;
     }
 
 }

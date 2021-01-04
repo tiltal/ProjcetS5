@@ -1,16 +1,15 @@
-package Communcation;
-
-import java.util.*;
+ package donneesDynamique;
+import java.time.Clock;
 
 /**
  * 
  */
-public class MessageValue extends Message {
+public class TimedValue {
 
     /**
      * Default constructor
      */
-    public MessageValue() {
+    public TimedValue() {
     }
 
     /**
@@ -18,12 +17,11 @@ public class MessageValue extends Message {
      */
     private float value;
 
+
     /**
-     * @param id 
-     * @param type 
-     * @param value
+     * @param valeur
      */
-    public void MessageValue(String id, Type_message type, float value) {
+    public void TimedValue(float valeur) {
         // TODO implement here
     }
 
@@ -33,6 +31,14 @@ public class MessageValue extends Message {
     public float getValue() {
         // TODO implement here
         return 0.0f;
+    }
+
+    /**
+     * @return
+     */
+    public Clock getTime() {
+        // TODO implement here
+        return null;
     }
 
 }
