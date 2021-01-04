@@ -1,4 +1,4 @@
-package Communcation;
+package communication;
 
 import java.util.*;
 
@@ -23,14 +23,14 @@ public class Message {
      * @param id 
      * @param type
      */
-    public void Message(String id, Type_message type) {
+    public void Message(String id, TypeMessage type) {
         // TODO implement here
     }
 
     /**
      * @return
      */
-    public Type_message getType() {
+    public TypeMessage getType() {
         // TODO implement here
         return null;
     }

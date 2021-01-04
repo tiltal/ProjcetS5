@@ -1,11 +1,12 @@
-package DonnéesDynamique;
+package donneesDynamique;
+
 
 import java.util.*;
 
 /**
  * 
  */
-public class Captor {
+public class Captor implements Comparable<Captor> {
 
     /**
      * Default constructor
@@ -16,7 +17,36 @@ public class Captor {
      * @param type
      */
     public Captor(String id, Batiment batiment, int etage, String lieu, TypeCaptor type) {
-        // TODO implement here
+        this.id = id;
+        this.batiment = batiment;
+        this.etage = etage;
+        this.lieu = lieu;
+        this.type = type;
+        this.on = true;
+        this.etat = 0;
+        switch(this.type) {
+        case EAU:
+        	this.borneMin = 0;
+        	this.borneMax = 10;
+        	break;
+        case ELECTRICITE:
+        	this.borneMin = 10;
+        	this.borneMax = 500;
+        	break;
+
+        case AIRCOMPRIME:
+        	this.borneMin = 17;
+        	this.borneMax = 22;
+        	break;
+
+        default:
+
+        	this.borneMin = 0;
+        	this.borneMax = 5;
+        	break;
+        
+        
+        }
     }
 
     /**
@@ -58,6 +88,8 @@ public class Captor {
      * 
      */
     private String lieu;
+    
+    private TypeCaptor type;
 
 
 
@@ -76,23 +108,20 @@ public class Captor {
      * @return
      */
     public float getBorneInf() {
-        // TODO implement here
-        return 0.0f;
+        return borneMin;
     }
 
     /**
      * @return
      */
     public float getBorneSup() {
-        // TODO implement here
-        return 0.0f;
+        return borneMax;
     }
 
     /**
      * @return
      */
     public ArrayList<TimedValue> getValues() {
-        // TODO implement here
         return null;
     }
 
@@ -115,16 +144,18 @@ public class Captor {
      * @return
      */
     public int getEtat() {
-        // TODO implement here
-        return 0;
+        return this.etat;
     }
 
     /**
      * @return
      */
     public boolean getOn() {
-        // TODO implement here
-        return true;
+        return this.on;
+    }
+    
+    public String getId() {
+    	return this.id;
     }
 
     /**
@@ -132,7 +163,19 @@ public class Captor {
      * @param max
      */
     public void setBornes(float inf, float max) {
-        // TODO implement here
+    	this.borneMin = inf;
+    	this.borneMax = max;
     }
+
+	@Override
+	public String toString() {
+		return "Captor [id=" + id + ", etat=" + etat + ", on=" + on + ", batiment=" + batiment + ", etage=" + etage
+				+ ", borneMin=" + borneMin + ", borneMax=" + borneMax + ", lieu=" + lieu + ", type=" + type + "]";
+	}
+
+	@Override
+	public int compareTo(Captor capt2) {
+		return this.id.compareTo(capt2.getId());
+	}
 
 }

@@ -1,14 +1,10 @@
-package DonnéesDynamique;
+package donneesDynamique;
 
 import java.util.Observable;
 
-/**
- * 
- */
-@SuppressWarnings("deprecation")
-public class AbstractModel extends Observable {
+public class AbstractModel extends Observable{
 
-    /**
+	 /**
      * Default constructor
      */
     public AbstractModel() {
