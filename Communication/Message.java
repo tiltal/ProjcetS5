@@ -8,7 +8,7 @@ import java.util.*;
 public class Message {
 
     /**
-     * Default constructor
+     * default constructor
      */
     public Message() {
     }
