@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
@@ -24,17 +25,21 @@ public class MainFrame extends JFrame{
 	Captor captorTest2 = new Captor(getWarningString(), null, ABORT, getName(), null);
 	private JTabbedPane tabbedPane;
 	private JScrollPane tempsReelPannel = new TempsReel(new TempReelTableModel(new ArrayList<Captor>((Arrays.asList(captorTest1, captorTest2)))));
-	
+	private JPanel analyse = new Analyse();
 	public MainFrame() {
+		
+		//main frame configuration
 		super("Projet S5");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 		this.setBounds(100, 100, 800, 800);
 		
+		//tabs configuration
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		this.getContentPane().add(tabbedPane);
-		
 		tabbedPane.addTab("Temps reel", null, tempsReelPannel );
+		tabbedPane.addTab("Analyse", null, analyse);
+		tabbedPane.addTab("Capteurs", null, null);
 	}
 
 
