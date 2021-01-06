@@ -1,6 +1,6 @@
-package Communication;
+package communication;
 
-import DonnéesDynamique.University;
+import donneesDynamique.University;
 
 /**
  * 

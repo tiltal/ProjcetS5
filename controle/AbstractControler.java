@@ -1,6 +1,6 @@
-package Controle;
+package controle;
 
-import DonnéesDynamique.AbstractModel;
+import donneesDynamique.AbstractModel;
 
 /**
  * 

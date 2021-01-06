@@ -1,8 +1,9 @@
-package Communication;
+package communication;
 
-import DonnéesDynamique.University;
 import java.io.*;
 import java.net.*;
+
+import donneesDynamique.University;
 
 public class Serveur implements Runnable{
    private static final int PORT = 8952;

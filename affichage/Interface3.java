@@ -1,4 +1,4 @@
-package Affichage;
+package affichage;
 
 import java.util.Observable;
 import java.util.Observer;
