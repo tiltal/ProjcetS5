@@ -23,7 +23,6 @@ public class Interface2 implements Observer {
         // TODO implement here
     }
 
-
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		

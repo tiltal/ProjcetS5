@@ -8,7 +8,11 @@ import java.util.*;
 public class Message {
 
     /**
+<<<<<<< HEAD
      * Default constructor
+=======
+     * default constructor
+>>>>>>> refs/heads/Connexion
      */
     public Message() {
     }
