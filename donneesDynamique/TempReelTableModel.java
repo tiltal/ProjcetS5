@@ -27,25 +27,33 @@ public class TempReelTableModel extends AbstractTableModel {
   
 	@Override
 	public int getColumnCount() {
-		return captorList.size();
+		return collumnNames.length;
 	}
 
 	@Override
 	public int getRowCount() {
-		return collumnNames.length;
+		return captorList.size();
 	}
+	
+	public String getColumnName(int columnIndex) {
+        return collumnNames[columnIndex];
+    }
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch(columnIndex) {
 			case 0:
 				//TODO return the id
+				return null;
 			case 1:
 				//TODO return batiment name
+				return null;
 			case 2:
 				//TODO return Etage name
+				return null;
 			case 3:
 				//TODO return Piece name
+				return null;
 			case 4:
 				return captorList.get(rowIndex).getLastValue();
 			case 5:
