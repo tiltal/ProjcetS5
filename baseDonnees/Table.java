@@ -1,4 +1,4 @@
-package donneesDynamique;
+package baseDonnees;
 import java.sql.*;
 
 public abstract class Table {
@@ -13,6 +13,7 @@ public abstract class Table {
 		this.infoTable = infoTable;
 	}
 	
+	
 	public void creerTable (Connection con) {
 		
 		/*ajouter la nouvelle table*/
@@ -25,7 +26,7 @@ public abstract class Table {
 		
 	}
 	
-	
+	/*ajouter une ligne dans une table de la bd*/
 	public void ajouterInfo (Connection con, String infoAAjouter) {
 		try {
 			Statement stmt = con.createStatement();
