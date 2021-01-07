@@ -4,19 +4,4 @@
 /TimedValue.class
 /TypeCaptor.class
 /University.class
-<<<<<<< HEAD
 /TestTimedValue.java
-=======
-/BaseDeDonnees.class
-/BatimentBD.class
-/Capteur.class
-/Table.class
-/TableBatiment.class
-/TableCapteur.class
-/TableValeur.class
-/Valeur.class
-<<<<<<< HEAD
-/TestTimedValue.java
-=======
->>>>>>> branch 'bd' of https://github.com/tiltal/ProjcetS5
->>>>>>> refs/heads/bd
