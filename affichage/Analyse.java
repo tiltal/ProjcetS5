@@ -87,18 +87,13 @@ public class Analyse extends JPanel implements Observer {
 		this.add(graphZone, BorderLayout.CENTER);
 		graphZone.setLayout(new GridLayout(0,1));
 		
-		JPanel curve1 = new JPanel();
-		JPanel curve2 = new JPanel();
-		JPanel curve3 = new JPanel();
+		CurveCanvas curve1 = new CurveCanvas();
+		CurveCanvas curve2 = new CurveCanvas();
+		CurveCanvas curve3 = new CurveCanvas();
 		
 		graphZone.add(curve1);
 		graphZone.add(curve2);
 		graphZone.add(curve3);
-		
-		//test
-		curve1.add(new JButton("1"));
-		curve2.add(new JButton("2"));
-		curve3.add(new JButton("3"));
 		
     	
     }
