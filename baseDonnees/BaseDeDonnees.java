@@ -1,4 +1,4 @@
-package donneesDynamique;
+package baseDonnees;
 import java.sql.*;
 
 public class BaseDeDonnees {
@@ -21,7 +21,7 @@ public class BaseDeDonnees {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost/test",
+					"jdbc:mysql://localhost:3306/test",
 					"root",
 					"");
 		}catch(SQLException e) {
@@ -35,7 +35,7 @@ public class BaseDeDonnees {
 	public void viderBd() {
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DROP TABLE Batiment");
+			stmt.executeUpdate("DROP TABLE Valeur");
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -45,22 +45,8 @@ public class BaseDeDonnees {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DROP TABLE Valeur");
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
-	public void videValeur() {
-		try {
-			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DROP TABLE Valeur");
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * @return the con

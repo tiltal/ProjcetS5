@@ -1,14 +1,16 @@
-package donneesDynamique;
+package baseDonnees;
+
+import java.util.List;
 
 public class Capteur {
 	
 	private String nomCapteur;
 	private String typeFluide;
+	private String nomBatiment;
 	private int etage;
 	private String lieu;
 	private String connecte;
-	
-	/* -------------------classe pour implementer la base de donnees-------------------*/
+	private List<Valeur> valeurs;
 	
 	/**
 	 * @param nomCapteur
@@ -16,13 +18,15 @@ public class Capteur {
 	 * @param seuilMin
 	 * @param seuilMax
 	 */
-	public Capteur(String nomCapteur, String typeFluide, int etage, String lieu, String connecte) {
+	public Capteur(String nomCapteur, String typeFluide, String nomBatiment, int etage, String lieu, String connecte, List<Valeur> valeurs) {
 		super();
 		this.nomCapteur = nomCapteur;
 		this.typeFluide = typeFluide;
+		this.nomBatiment = nomBatiment;
 		this.etage = etage;
 		this.lieu = lieu;
 		this.connecte = connecte;
+		this.valeurs = valeurs;
 	}
 	
 	public boolean equals(Object obj) {
@@ -65,7 +69,21 @@ public class Capteur {
 	}
 	
 	
-	
+
+	/**
+	 * @return the valeurs
+	 */
+	public List<Valeur> getValeurs() {
+		return valeurs;
+	}
+
+	/**
+	 * @param valeurs the valeurs to set
+	 */
+	public void setValeurs(List<Valeur> valeurs) {
+		this.valeurs = valeurs;
+	}
+
 	/**
 	 * @return the nomCapteur
 	 */
@@ -95,6 +113,20 @@ public class Capteur {
 
 	public String getConnecte() {
 		return connecte;
+	}
+
+	/**
+	 * @return the nomBatiment
+	 */
+	public String getNomBatiment() {
+		return nomBatiment;
+	}
+
+	/**
+	 * @param nomBatiment the nomBatiment to set
+	 */
+	public void setNomBatiment(String nomBatiment) {
+		this.nomBatiment = nomBatiment;
 	}
 
 
