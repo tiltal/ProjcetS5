@@ -7,11 +7,6 @@ import java.time.Clock;
  */
 public class TimedValue implements Comparable<TimedValue> {
 
-    /**
-     * Default constructor
-     */
-    public TimedValue() {
-    }
     
 
     /**
@@ -33,6 +28,8 @@ public class TimedValue implements Comparable<TimedValue> {
     public TimedValue(float value) {
     	this.value = value;
     	this.time = Clock.systemDefaultZone().instant().toString();
+    	time = time.replace(':','/');
+    	time = time.substring(0, time.length()-1);
     }
 
     /**

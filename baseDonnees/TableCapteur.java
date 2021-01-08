@@ -41,7 +41,7 @@ public class TableCapteur extends Table {
 				/*créer une liste vide de valeurs associées*/
 				
 				/*affecter les champs correspondant avec les informations données par la requête, à la fin la liste de valeurs associée*/
-				Captor capteur = new Captor(result.getString(1),result.getString(2),result.getInt(4),result.getString(3),result.getString(5));
+				Captor capteur = new Captor(result.getString(1),result.getString(3),result.getInt(4),result.getString(5),result.getString(2));
 				
 				/*si ce capteur n'existe pas encore dans la liste des capteurs*/ 
 				/*impossible d'avoir deux capteurs de même nom dans la table de capteurs, ce la provoquerait une erreur

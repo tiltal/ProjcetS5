@@ -78,6 +78,10 @@ public class Valeur {
 		this.nomCapteur = nomCapteur;
 	}
 	
+	public String toString() {
+		String s =  "Valeur [ " + this.nomCapteur + " le " + this.date + " valeur : " + this.valeur + " ]";
+		return s;
+	}
 	
 
 }

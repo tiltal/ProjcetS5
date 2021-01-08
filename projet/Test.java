@@ -20,7 +20,7 @@ public class Test {
 		tableVal.creerTable(bdTest.getCon());
 		
 		/*test------------------pour vous donner une idée de comment marche la BD, à supprimer -----------------------------*/
-		tableCap.ajouterInfo(bdTest.getCon(), "INSERT INTO Capteur VALUES ('capteur1', 'TEMPERATURE', 'U2', 2, 'U2-301')");
+		tableCap.ajouterInfo(bdTest.getCon(), "INSERT INTO Capteur VALUES ('capteur1', 'EAU', 'U1', 0, 'toilettes')");
 		tableCap.ajouterInfo(bdTest.getCon(), "INSERT INTO Capteur VALUES ('capteur2', 'TEMPERATURE', 'A4', 4, 'A4-25')");
 		tableCap.ajoutCap(bdTest.getCon(), "SELECT * FROM Capteur");
 
@@ -33,7 +33,7 @@ public class Test {
 		
 		System.out.println("\nInfo des tables de Valeur : ");
 		System.out.println("Date d'enregistrement : " + tableVal.getVal().get(0).getDate() + ", Valeur : " + tableVal.getVal().get(0).getValeur() + ", type de fluide : " + tableVal.getVal().get(0).getTypeFluide() + ", capteur associé : " + tableVal.getVal().get(0).getValeur());
-		
+		System.out.println(tableVal.getVal());
 		System.out.println("\n-----MODIFICATION-----");
 		for(int i=0 ; i<tableCap.getCap().size() ; i++)
 			System.out.println("Nom capteur : " + tableCap.getCap().get(i).getId() + ", type de fluide : " + tableCap.getCap().get(i).getType() );

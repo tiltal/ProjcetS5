@@ -16,7 +16,7 @@ public class TableValeur extends Table {
 
 	public TableValeur() {
 		/*idValeur se remplit tout seul, on n'a pas besoin d'y toucher*/
-		super("CREATE TABLE Valeur (idValeur INT PRIMARY KEY AUTO_INCREMENT, date VARCHAR(20), valeur FLOAT, typeFluide VARCHAR(20), nomCapteur VARCHAR(50))");
+		super("CREATE TABLE Valeur (idValeur INT PRIMARY KEY AUTO_INCREMENT, date VARCHAR(40), valeur FLOAT, typeFluide VARCHAR(20), nomCapteur VARCHAR(50))");
 	}
 	
 	/*ajouter une nouvelle valeur*/
