@@ -1,5 +1,6 @@
  package donneesDynamique;
 
+import java.sql.Time;
 import java.util.*;
 
 /**
@@ -77,7 +78,7 @@ public class Captor {
      */
     public float getBorneInf() {
         // TODO implement here
-        return 0.0f;
+        return 10.0f;
     }
 
     /**
@@ -85,7 +86,7 @@ public class Captor {
      */
     public float getBorneSup() {
         // TODO implement here
-        return 0.0f;
+        return -10.0f;
     }
 
     /**
@@ -93,7 +94,7 @@ public class Captor {
      */
     public ArrayList<TimedValue> getValues() {
         // TODO implement here
-        return null;
+        return new ArrayList<TimedValue>(Arrays.asList(new TimedValue(-15.0f), new TimedValue(16.0f)));
     }
 
     /**

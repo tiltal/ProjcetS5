@@ -4,7 +4,7 @@ import java.time.Clock;
 /**
  * 
  */
-public class TimedValue {
+public class TimedValue implements Comparable<TimedValue>{
 
     /**
      * Default constructor
@@ -21,16 +21,16 @@ public class TimedValue {
     /**
      * @param valeur
      */
-    public void TimedValue(float valeur) {
-        // TODO implement here
+    public TimedValue(float valeur) {
+        value = valeur;
     }
 
     /**
      * @return
      */
     public float getValue() {
-        // TODO implement here
-        return 0.0f;
+ 
+        return value;
     }
 
     /**
@@ -40,5 +40,11 @@ public class TimedValue {
         // TODO implement here
         return null;
     }
+
+	@Override
+	public int compareTo(TimedValue arg0) {
+		// TODO Auto-generated method stub
+		return 1;
+	}
 
 }

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import donneesDynamique.AnalyseModel;
 import donneesDynamique.Captor;
 import donneesDynamique.TempReelTableModel;
 
@@ -25,7 +26,8 @@ public class MainFrame extends JFrame{
 	Captor captorTest2 = new Captor(getWarningString(), null, ABORT, getName(), null);
 	private JTabbedPane tabbedPane;
 	private JScrollPane tempsReelPannel = new TempsReel(new TempReelTableModel(new ArrayList<Captor>((Arrays.asList(captorTest1, captorTest2)))));
-	private JPanel analyse = new Analyse();
+	private JPanel analyse = new Analyse(new AnalyseModel());
+	
 	public MainFrame() {
 		
 		//main frame configuration

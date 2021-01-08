@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import donneesDynamique.AnalyseModel;
+import donneesDynamique.Captor;
+import donneesDynamique.CurveCanvasModel;
+import donneesDynamique.TypeCaptor;
+
 /**
  * 
  */
@@ -22,13 +27,17 @@ public class Analyse extends JPanel implements Observer {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private AnalyseModel model;
 
 
 	/**
      * Default constructor
      */
-    public Analyse() {
+    public Analyse(AnalyseModel model) {
     	super();
+    	//init model
+    	this.model = model;
+    	
     	this.setLayout(new BorderLayout(0, 0));
     	//add Toolbars
     	
@@ -87,9 +96,15 @@ public class Analyse extends JPanel implements Observer {
 		this.add(graphZone, BorderLayout.CENTER);
 		graphZone.setLayout(new GridLayout(0,1));
 		
-		CurveCanvas curve1 = new CurveCanvas();
-		CurveCanvas curve2 = new CurveCanvas();
-		CurveCanvas curve3 = new CurveCanvas();
+		CurveCanvas curve1 = new CurveCanvas(model.getCanvas1());
+		CurveCanvas curve2 = new CurveCanvas(model.getCanvas2());
+		CurveCanvas curve3 = new CurveCanvas(model.getCanvas3());
+		
+		//TODO test
+		Captor cap = new Captor("lala", null, 1, "name", TypeCaptor.AIRCOMPRIME);
+		cap.addValue(15);
+		cap.addValue(16);
+		curve1  = new CurveCanvas(new CurveCanvasModel(cap));
 		
 		graphZone.add(curve1);
 		graphZone.add(curve2);
