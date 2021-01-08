@@ -20,8 +20,8 @@ public class Test {
 		tableVal.creerTable(bdTest.getCon());
 		
 		/*test------------------pour vous donner une idée de comment marche la BD, à supprimer -----------------------------*/
-		tableCap.ajouterInfo(bdTest.getCon(), "INSERT INTO Capteur VALUES ('capteur1', 'TEMPERATURE', 'U2', 2, 'U2-301', 'Y')");
-		tableCap.ajouterInfo(bdTest.getCon(), "INSERT INTO Capteur VALUES ('capteur2', 'TEMPERATURE', 'A4', 4, 'A4-25', 'Y')");
+		tableCap.ajouterInfo(bdTest.getCon(), "INSERT INTO Capteur VALUES ('capteur1', 'TEMPERATURE', 'U2', 2, 'U2-301')");
+		tableCap.ajouterInfo(bdTest.getCon(), "INSERT INTO Capteur VALUES ('capteur2', 'TEMPERATURE', 'A4', 4, 'A4-25')");
 		tableCap.ajoutCap(bdTest.getCon(), "SELECT * FROM Capteur");
 
 		tableVal.ajouterInfo(bdTest.getCon(), "INSERT INTO Valeur (date, valeur, typeFluide, nomCapteur) VALUES ('25 decembre', 14.8, 'degree', 'capteur 1')");
@@ -29,16 +29,14 @@ public class Test {
 		
 		System.out.println("\nInfo des tables de Capteur : ");
 		for(int i=0 ; i<tableCap.getCap().size() ; i++)
-			System.out.println("Nom capteur : " + tableCap.getCap().get(i).getNomCapteur() + ", type de fluide : " + tableCap.getCap().get(i).getTypeFluide() + ", connecté ou non : " + tableCap.getCap().get(i).getConnecte());
+			System.out.println("Nom capteur : " + tableCap.getCap().get(i).getId() + ", type de fluide : " + tableCap.getCap().get(i).getType() );
 		
 		System.out.println("\nInfo des tables de Valeur : ");
 		System.out.println("Date d'enregistrement : " + tableVal.getVal().get(0).getDate() + ", Valeur : " + tableVal.getVal().get(0).getValeur() + ", type de fluide : " + tableVal.getVal().get(0).getTypeFluide() + ", capteur associé : " + tableVal.getVal().get(0).getValeur());
 		
 		System.out.println("\n-----MODIFICATION-----");
-		tableCap.updateInfo(bdTest.getCon(), "UPDATE Capteur SET connecte = 'N' WHERE id = 'capteur2'");
 		for(int i=0 ; i<tableCap.getCap().size() ; i++)
-			System.out.println("Nom capteur : " + tableCap.getCap().get(i).getNomCapteur() + ", type de fluide : " + tableCap.getCap().get(i).getTypeFluide() + ", connecté ou non : " + tableCap.getCap().get(i).getConnecte());
-		/*----------------------------------fin test-----------------------------------*/
+			System.out.println("Nom capteur : " + tableCap.getCap().get(i).getId() + ", type de fluide : " + tableCap.getCap().get(i).getType() );
 		
 		bdTest.viderBd();
 		

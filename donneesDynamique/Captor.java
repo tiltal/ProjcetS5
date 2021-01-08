@@ -15,12 +15,45 @@ public class Captor implements Comparable<Captor> {
      * @param lieu 
      * @param type
      */
-    public Captor(String id, Batiment batiment, int etage, String lieu, TypeCaptor type) {
+    public Captor(String id, String batiment, int etage, String lieu, TypeCaptor type) {
         this.id = id;
         this.batiment = batiment;
         this.etage = etage;
         this.lieu = lieu;
         this.type = type;
+        this.on = true;
+        this.etat = 0;
+        switch(this.type) {
+        case EAU:
+        	this.borneMin = 0;
+        	this.borneMax = 10;
+        	break;
+        case ELECTRICITE:
+        	this.borneMin = 10;
+        	this.borneMax = 500;
+        	break;
+
+        case AIRCOMPRIME:
+        	this.borneMin = 17;
+        	this.borneMax = 22;
+        	break;
+
+        default:
+
+        	this.borneMin = 0;
+        	this.borneMax = 5;
+        	break;
+        
+        
+        }
+    }    
+    
+    public Captor(String id, String batiment, int etage, String lieu, String type) {
+        this.id = id;
+        this.batiment = batiment;
+        this.etage = etage;
+        this.lieu = lieu;
+        this.type = findType(type);
         this.on = true;
         this.etat = 0;
         switch(this.type) {
@@ -66,7 +99,7 @@ public class Captor implements Comparable<Captor> {
     /**
      * 
      */
-    private Batiment batiment;
+    private String batiment;
 
     /**
      * 
@@ -92,7 +125,28 @@ public class Captor implements Comparable<Captor> {
 
 
 
-    
+    private TypeCaptor findType(String type) {
+        TypeCaptor typec;
+    	switch(type) {
+        case "EAU":
+        	typec = TypeCaptor.EAU;
+        	break;
+        case "ELECTRICITE":
+        	typec = TypeCaptor.ELECTRICITE;
+        	break;
+
+        case "AIRCOMPRIME":
+        	typec = TypeCaptor.AIRCOMPRIME;
+        	break;
+
+        default:
+        	typec = TypeCaptor.TEMPERATURE;
+        	break;
+        
+        
+        }
+    	return typec;
+    }
     
     public void connexion(){
     	this.on = true;
@@ -158,7 +212,7 @@ public class Captor implements Comparable<Captor> {
     }
     
 
-    public Batiment getBatiment() {
+    public String getBatiment() {
 		return batiment;
 	}
 

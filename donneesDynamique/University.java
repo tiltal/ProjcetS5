@@ -116,10 +116,10 @@ public class University extends AbstractModel {
     	if(get == false){
     		bat = new Batiment(batiment);
     		this.Batiments.add(bat);
-    		capt = new Captor(id, bat,etage,lieu,typec);
+    		capt = new Captor(id, bat.toString(),etage,lieu,typec);
     	}
     	else{
-    		capt = new Captor(id,bat,etage,lieu,typec);
+    		capt = new Captor(id,bat.toString(),etage,lieu,typec);
     	}
     	
     	bat.addCaptor(capt);

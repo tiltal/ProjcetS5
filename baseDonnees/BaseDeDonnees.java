@@ -18,10 +18,10 @@ public class BaseDeDonnees {
 	public void etablirConnexion() {
 		/*établir la connexion*/
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
 			
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/test",
+					"jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC",
 					"root",
 					"");
 		}catch(SQLException e) {
