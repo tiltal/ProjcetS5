@@ -156,8 +156,25 @@ public class Captor implements Comparable<Captor> {
     public String getId() {
     	return this.id;
     }
+    
 
-    /**
+    public Batiment getBatiment() {
+		return batiment;
+	}
+
+	public int getEtage() {
+		return etage;
+	}
+
+	public String getLieu() {
+		return lieu;
+	}
+
+	public TypeCaptor getType() {
+		return type;
+	}
+
+	/**
      * @param inf 
      * @param max
      */
