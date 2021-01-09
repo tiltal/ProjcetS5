@@ -3,3 +3,10 @@
 /MessageValue.class
 /Receptor.class
 /Type_message.class
+<<<<<<< HEAD
+=======
+/Serveur.class
+/Serveur$1.class
+/TestCommunication.class
+/TestCommunication.java
+>>>>>>> refs/heads/Connexion

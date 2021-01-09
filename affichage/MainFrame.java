@@ -13,6 +13,7 @@ import javax.swing.JTabbedPane;
 import donneesDynamique.AnalyseModel;
 import donneesDynamique.Captor;
 import donneesDynamique.TempReelTableModel;
+import donneesDynamique.TypeCaptor;
 
 
 
@@ -22,8 +23,9 @@ public class MainFrame extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	Captor captorTest1 = new Captor(getWarningString(), null, ABORT, getName(), null);
-	Captor captorTest2 = new Captor(getWarningString(), null, ABORT, getName(), null);
+	//TODO test captors
+	Captor captorTest1 = new Captor("lala", "bat1", 1, "piece1", TypeCaptor.AIRCOMPRIME);
+	Captor captorTest2 = new Captor("lolo", "bat2", 3, "piece2", TypeCaptor.EAU);
 	private JTabbedPane tabbedPane;
 	private JScrollPane tempsReelPannel = new TempsReel(new TempReelTableModel(new ArrayList<Captor>((Arrays.asList(captorTest1, captorTest2)))));
 	private JPanel analyse = new Analyse(new AnalyseModel());

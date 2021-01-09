@@ -4,6 +4,10 @@
 /TimedValue.class
 /TypeCaptor.class
 /University.class
+<<<<<<< HEAD
 /TempReelTableModel.class
 /CurveCanvasModel.class
 /AnalyseModel.class
+=======
+/TestTimedValue.java
+>>>>>>> refs/remotes/origin/master
