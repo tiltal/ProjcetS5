@@ -43,17 +43,13 @@ public class TempReelTableModel extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch(columnIndex) {
 			case 0:
-				//TODO return the id
-				return null;
+				return captorList.get(rowIndex).getId();
 			case 1:
-				//TODO return batiment name
-				return null;
+				return captorList.get(rowIndex).getBatiment();
 			case 2:
-				//TODO return Etage name
-				return null;
+				return captorList.get(rowIndex).getEtage();
 			case 3:
-				//TODO return Piece name
-				return null;
+				return captorList.get(rowIndex).getLieu();
 			case 4:
 				return captorList.get(rowIndex).getLastValue();
 			case 5:
