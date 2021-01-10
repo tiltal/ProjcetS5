@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,7 +29,8 @@ public class CurveCanvas extends JComponent implements Observer{
 	//model
 	private CurveCanvasModel model;
 	private int yZero = 0;
-	int nbValue;
+	private int xGradOffset = 10;
+	
 	
 	
 	public CurveCanvas(CurveCanvasModel model) {
@@ -34,7 +38,7 @@ public class CurveCanvas extends JComponent implements Observer{
 		this.model = model;
 		if (model != null) {
 			model.addObserver(this);
-			nbValue = Math.round(Math.abs(model.getValueMax().getValue()-model.getValueMin().getValue()));
+			
 		}
 		
 	}
@@ -58,6 +62,7 @@ public class CurveCanvas extends JComponent implements Observer{
 			
 			//addapt graph to values
 			setAxis(g);
+			setGraduation(g);
 		}
 		
 		
@@ -76,7 +81,7 @@ public class CurveCanvas extends JComponent implements Observer{
 			yZero = 3;
 		}
 		else {
-			yZero = Math.round(model.getValueMax().getValue()/nbValue*(this.getHeight()-3));
+			yZero = Math.round(model.getValueMax().getValue()/model.getVRange()*(this.getHeight()-3));
 		}
 		g.drawLine(3, yZero, this.getWidth(), yZero);
 		g.drawLine(this.getWidth()-3, yZero + 3, this.getWidth(), yZero);
@@ -89,6 +94,83 @@ public class CurveCanvas extends JComponent implements Observer{
 		
 	}
 	
+	public void setGraduation(Graphics g) {
+		int maxYGrad = 10;
+		int maxXGrad = 15;
+		int vIncrem = Math.round(model.getVRange()/maxYGrad);
+		int gIncrem = Math.round(this.getHeight()*vIncrem/model.getVRange());
+		int xRange = this.getWidth() - 2*xGradOffset;
+		//Y
+		//positiv		
+		for (int i = 0; i*vIncrem<=(model.getValueMax().getValue()); i++) {
+			traceGradYP((yZero - i*gIncrem), ((Integer)(i*vIncrem)).toString(), g);
+		}
+		//negativ
+		for(int i = -1;  i*vIncrem>=(model.getValueMin().getValue()); i--) {
+			traceGradYN((yZero - i*gIncrem), ((Integer)(i*vIncrem)).toString(), g);
+		}
+		
+		//X
+		gIncrem = xRange/maxXGrad;
+		Instant startInstant = Instant.parse(model.getValueBegin().getTime());
+		long tRange = startInstant.until(Instant.parse(model.getValueEnd().getTime()), ChronoUnit.MILLIS);
+		long tIncrement = tRange/maxXGrad;
+		
+		//if time range is under 1 hour
+		if (tRange <= 60*60*60) {
+			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
+				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(14, 19), g);
+			}
+		}//else if time range is under 1 day
+		else if (tRange <= 60*60*60*24) {
+			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
+				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(11, 16), g);
+			}
+		}//else if time range is under 40 days
+		else if (tRange <= 60*60*60*24*40) {
+			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
+				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(8, 13).replace('T', ':'), g);
+			}
+		}//else if time range is under 1 year
+		else if (tRange <= 60*60*60*24*365) {
+			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
+				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(8, 13), g);
+			}
+		}
+		else {
+			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
+				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(7), g);
+			}
+		}
+		
+	}
+	
+	public void traceGradYP(int y, String label, Graphics g) {
+		g.setColor(Color.BLACK);
+		g.drawLine(0, y, 6, y);
+		g.drawString(label, 5, y+15);
+	}
+	
+	public void traceGradYN(int y, String label, Graphics g) {
+		g.setColor(Color.BLACK);
+		g.drawLine(0, y, 6, y);
+		g.drawString(label, 5, y-3);
+	}
+	
+	public void traceGradX(int x, String label, Graphics g) {
+		g.setColor(Color.BLACK);
+		if (model.getValueMax().getValue() <= 0) {
+			g.drawString(label, x-5, yZero-15);
+		}else {
+			g.drawString(label, x-5, yZero-6);
+		}
+		g.drawLine(x, yZero+3, x, yZero-3);
+		
+	}
+	
+	public void tracePoint() {
+		
+	}
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -102,12 +184,13 @@ public class CurveCanvas extends JComponent implements Observer{
 					JFrame window = new JFrame("Curve Tracer");
 					window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					window.setBounds(0, 0, 800, 800);
+					window.setVisible(true);
 					Captor cap = new Captor("lala", null, 1, "name", TypeCaptor.AIRCOMPRIME);
 					cap.addValue(15);
 					cap.addValue(16);
 					
 					window.getContentPane().add(new CurveCanvas(new CurveCanvasModel(cap)), BorderLayout.CENTER);
-					window.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

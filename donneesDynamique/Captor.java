@@ -176,7 +176,7 @@ public class Captor implements Comparable<Captor> {
      * @return
      */
     public ArrayList<TimedValue> getValues() {
-        return new ArrayList<TimedValue>(Arrays.asList(new TimedValue(-15.0f), new TimedValue(16.0f)));
+        return new ArrayList<TimedValue>(Arrays.asList(new TimedValue(-5.0f, "2014-12-03T10:15:30.00Z"), new TimedValue(16.0f, "2014-12-03T10:15:35.00Z")));
     }
 
     /**
@@ -191,7 +191,7 @@ public class Captor implements Comparable<Captor> {
      * @param valeur
      */
     public void addValue(float valeur) {
-        // TODO implement here
+        
     }
 
     /**
