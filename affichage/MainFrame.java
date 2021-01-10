@@ -29,6 +29,7 @@ public class MainFrame extends JFrame{
 	private JTabbedPane tabbedPane;
 	private JScrollPane tempsReelPannel = new TempsReel(new TempReelTableModel(new ArrayList<Captor>((Arrays.asList(captorTest1, captorTest2)))));
 	private JPanel analyse = new Analyse(new AnalyseModel());
+	private JPanel captorManage = new CaptorManage();
 	
 	public MainFrame() {
 		
@@ -43,7 +44,7 @@ public class MainFrame extends JFrame{
 		this.getContentPane().add(tabbedPane);
 		tabbedPane.addTab("Temps reel", null, tempsReelPannel );
 		tabbedPane.addTab("Analyse", null, analyse);
-		tabbedPane.addTab("Capteurs", null, null);
+		tabbedPane.addTab("Capteurs", null, captorManage);
 	}
 
 
