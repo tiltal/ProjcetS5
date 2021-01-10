@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -15,6 +16,7 @@ import javax.swing.JFrame;
 
 import donneesDynamique.Captor;
 import donneesDynamique.CurveCanvasModel;
+import donneesDynamique.TimedValue;
 import donneesDynamique.TypeCaptor;
 
 
@@ -30,7 +32,8 @@ public class CurveCanvas extends JComponent implements Observer{
 	private CurveCanvasModel model;
 	private int yZero = 0;
 	private int xGradOffset = 10;
-	
+	private long tRange = 0;
+	private int xRange = 0;
 	
 	
 	public CurveCanvas(CurveCanvasModel model) {
@@ -63,6 +66,8 @@ public class CurveCanvas extends JComponent implements Observer{
 			//addapt graph to values
 			setAxis(g);
 			setGraduation(g);
+			
+			tracePoint(g);
 		}
 		
 		
@@ -99,7 +104,7 @@ public class CurveCanvas extends JComponent implements Observer{
 		int maxXGrad = 15;
 		int vIncrem = Math.round(model.getVRange()/maxYGrad);
 		int gIncrem = Math.round(this.getHeight()*vIncrem/model.getVRange());
-		int xRange = this.getWidth() - 2*xGradOffset;
+		xRange = this.getWidth() - 2*xGradOffset;
 		//Y
 		//positiv		
 		for (int i = 0; i*vIncrem<=(model.getValueMax().getValue()); i++) {
@@ -113,33 +118,33 @@ public class CurveCanvas extends JComponent implements Observer{
 		//X
 		gIncrem = xRange/maxXGrad;
 		Instant startInstant = Instant.parse(model.getValueBegin().getTime());
-		long tRange = startInstant.until(Instant.parse(model.getValueEnd().getTime()), ChronoUnit.MILLIS);
+		tRange = startInstant.until(Instant.parse(model.getValueEnd().getTime()), ChronoUnit.MILLIS);
 		long tIncrement = tRange/maxXGrad;
 		
 		//if time range is under 1 hour
 		if (tRange <= 60*60*60) {
 			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
-				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(14, 19), g);
+				traceGradX(3+xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(14, 19), g);
 			}
 		}//else if time range is under 1 day
 		else if (tRange <= 60*60*60*24) {
 			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
-				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(11, 16), g);
+				traceGradX(3+xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(11, 16), g);
 			}
 		}//else if time range is under 40 days
 		else if (tRange <= 60*60*60*24*40) {
 			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
-				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(8, 13).replace('T', ':'), g);
+				traceGradX(3+xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(8, 13).replace('T', ':'), g);
 			}
 		}//else if time range is under 1 year
 		else if (tRange <= 60*60*60*24*365) {
 			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
-				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(8, 13), g);
+				traceGradX(3+xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(8, 13), g);
 			}
 		}
 		else {
 			for (int i = 0; i<maxXGrad && startInstant.compareTo(Instant.parse(model.getValueEnd().getTime()))<=0; i++) {
-				traceGradX(xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(7), g);
+				traceGradX(3+xGradOffset + i*gIncrem, startInstant.plus(tIncrement*i, ChronoUnit.MILLIS).toString().substring(7), g);
 			}
 		}
 		
@@ -168,8 +173,20 @@ public class CurveCanvas extends JComponent implements Observer{
 		
 	}
 	
-	public void tracePoint() {
+	public void tracePoint(Graphics g) {
+		g.setColor(Color.BLUE);
+		float xRatio =xRange/(float)tRange;
+		float yRatio = this.getHeight()/model.getVRange();
+		Instant startInstant = Instant.parse(model.getValueBegin().getTime());
 		
+		for(Iterator<TimedValue> it = model.getListTriee().iterator(); it.hasNext();) {
+			TimedValue currTV = it.next();
+			long timeMilli = startInstant.until(Instant.parse(currTV.getTime()), ChronoUnit.MILLIS);
+			if (currTV.compareTo(model.getValueBegin())>=0 && currTV.compareTo(model.getValueEnd())<=0) {
+				g.drawOval(xGradOffset+3+Math.round(timeMilli*xRatio), yZero - Math.round(currTV.getValue()*yRatio), 6, 6);
+				g.fillOval(xGradOffset+3+Math.round(timeMilli*xRatio), yZero - Math.round(currTV.getValue()*yRatio), 6, 6);
+			}
+		}
 	}
 	
 	@Override
