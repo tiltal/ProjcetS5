@@ -35,24 +35,6 @@ public class TableCapteur extends Table {
 			e.printStackTrace();
 		}
 		
-		try {
-			/*Pour chaque ligne de la table de capteurs*/
-			while(result.next()) {
-				/*créer une liste vide de valeurs associées*/
-				
-				/*affecter les champs correspondant avec les informations données par la requête, à la fin la liste de valeurs associée*/
-				Captor capteur = new Captor(result.getString(1),result.getString(3),result.getInt(4),result.getString(5),result.getString(2));
-				
-				/*si ce capteur n'existe pas encore dans la liste des capteurs*/ 
-				/*impossible d'avoir deux capteurs de même nom dans la table de capteurs, ce la provoquerait une erreur
-				 * donc la vérification d'existance est à faire avant de choisi d'utiliser ajout / update */
-				if (!cap.contains(capteur))
-					cap.add(capteur);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
 	}
 	
 	/*Utiliser si le capteur est déjà enregistré dans la base*/
@@ -63,18 +45,38 @@ public class TableCapteur extends Table {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		/*mettre à jour la liste de capteur*/
-		cap.removeAll(cap);
-		ajoutCap(con, "SELECT * FROM Capteur");
 	}
 	
 
 
-	/*Getter sur la liste des capteurs enregistrés dans la base*/
-	public List<Captor> getCap() {
-		return cap;
-	}
+	//Obtenir tous les capteurs présents dans la bd/
+    public List<Captor> getCap (Connection con) {
+        //variable permettant de récupérer les informations de la requête SQL/
+        ResultSet result = null;
+
+        //exécuter la requête SQL/
+        try {
+            Statement stmt = con.createStatement();
+            result = stmt.executeQuery("SELECT * FROM Capteur");
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            //Pour chaque ligne de la table de capteurs/
+            while(result.next()) {
+
+                //affecter les champs correspondant avec les informations données par la requête, à la fin la liste de valeurs associée/
+                Captor capteur = new Captor(result.getString(1),result.getString(3),result.getInt(4),result.getString(5),result.getString(2));
+                cap.add(capteur);
+            }
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cap;
+
+    }
 	
 	
 

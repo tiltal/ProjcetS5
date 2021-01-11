@@ -106,8 +106,8 @@ public class University extends AbstractModel {
      * @param value
      */
     public void newValue(String id, float value) {
-        Captors.get(id).addValue(value);
         TimedValue tval= new TimedValue(value);
+        Captors.get(id).addValue(tval);
         memoire.addValue(tval, id);
     }
 
@@ -196,6 +196,8 @@ public class University extends AbstractModel {
 	public String toString() {
 		return "University [Nom=" + Nom + ", Batiments=" + Batiments + ", Captors=" + Captors +"]";
 	}
+	
+	
    
 
 }

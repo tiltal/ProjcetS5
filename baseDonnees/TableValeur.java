@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import donneesDynamique.Captor;
+
 public class TableValeur extends Table {
 	
 	/*liste des valeurs de toutes les tables*/
@@ -30,21 +32,35 @@ public class TableValeur extends Table {
 			e.printStackTrace();
 		}
 		
-		try {
-			while(result.next()) {
-				Valeur valeur = new Valeur(result.getString(2),result.getFloat(3),result.getString(4),result.getString(5));
-				
-				val.add(valeur);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
 		
 	}
 
 	/*retourne la liste de toutes les valeurs*/
-	public List<Valeur> getVal() {
-		return val;
+	public List<Valeur> getVal(Connection con) {
+		//variable permettant de récupérer les informations de la requête SQL/
+        ResultSet result = null;
+
+        //exécuter la requête SQL/
+        try {
+            Statement stmt = con.createStatement();
+            result = stmt.executeQuery("SELECT * FROM Valeur");
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            //Pour chaque ligne de la table de capteurs/
+            while(result.next()) {
+
+                //affecter les champs correspondant avec les informations données par la requête, à la fin la liste de valeurs associée/
+            	Valeur valeur = new Valeur(result.getString(2),result.getFloat(3),result.getString(4),result.getString(5));
+                val.add(valeur);
+            }
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return val;
 	}
 	
 	
