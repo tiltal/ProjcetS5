@@ -1,5 +1,6 @@
 package baseDonnees;
 
+import donneesDynamique.TimedValue;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ import donneesDynamique.Captor;
 public class TableValeur extends Table {
 	
 	/*liste des valeurs de toutes les tables*/
-	List<Valeur> val = new ArrayList<>();
+	List<TimedValue> val = new ArrayList<>();
 	
 	/*A chaque arrivée de nouvelle valeur, il faudra l'ajouter dans une liste de valeurs qui sera associée au capteur*/
 
@@ -36,7 +37,7 @@ public class TableValeur extends Table {
 	}
 
 	/*retourne la liste de toutes les valeurs*/
-	public List<Valeur> getVal(Connection con) {
+	public List<TimedValue> getVal(Connection con) {
 		//variable permettant de récupérer les informations de la requête SQL/
         ResultSet result = null;
 
@@ -53,7 +54,7 @@ public class TableValeur extends Table {
             while(result.next()) {
 
                 //affecter les champs correspondant avec les informations données par la requête, à la fin la liste de valeurs associée/
-            	Valeur valeur = new Valeur(result.getString(2),result.getFloat(3),result.getString(4),result.getString(5));
+            	TimedValue valeur = new TimedValue(result.getString(2),result.getFloat(3),result.getString(4));
                 val.add(valeur);
             }
         }catch(SQLException e) {

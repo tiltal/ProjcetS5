@@ -106,7 +106,7 @@ public class University extends AbstractModel {
      * @param value
      */
     public void newValue(String id, float value) {
-        TimedValue tval= new TimedValue(value);
+        TimedValue tval= new TimedValue(value, id);
         Captors.get(id).addValue(tval);
         memoire.addValue(tval, id);
     }

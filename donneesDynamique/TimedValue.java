@@ -15,21 +15,25 @@ public class TimedValue implements Comparable<TimedValue> {
     private float value;
     
     private String time;
+    
+    private String idCap;
 
 
     /**
      * @param valeur
      */
-    public TimedValue(float value, String time) {
+    public TimedValue(String time, float value, String idCap) {
         this.value= value;
-        this.time = time;        
+        this.time = time;      
+        this.idCap = idCap;
     }
     
-    public TimedValue(float value) {
+    public TimedValue(float value, String idCap) {
     	this.value = value;
     	this.time = Clock.systemDefaultZone().instant().toString();
     	time = time.replace(':','/');
     	time = time.substring(0, time.length()-1);
+    	this.idCap = idCap;
     }
 
     /**
@@ -43,8 +47,11 @@ public class TimedValue implements Comparable<TimedValue> {
      * @return
      */
     public String getTime() {
-        // TODO implement here
         return time;
+    }
+    
+    public String getIdCap() {
+    	return idCap;
     }
 
 	@Override

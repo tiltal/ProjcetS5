@@ -34,7 +34,7 @@ public class Test {
 			System.out.println("Nom capteur : " + tableCap.getCap(bdTest.getCon()).get(i).getId() + ", type de fluide : " + tableCap.getCap(bdTest.getCon()).get(i).getType() );
 		
 		System.out.println("\nInfo des tables de Valeur : ");
-		System.out.println("Date d'enregistrement : " + tableVal.getVal(bdTest.getCon()).get(0).getDate() + ", Valeur : " + tableVal.getVal(bdTest.getCon()).get(0).getValeur() + ", type de fluide : " + tableVal.getVal(bdTest.getCon()).get(0).getTypeFluide() + ", capteur associé : " + tableVal.getVal(bdTest.getCon()).get(0).getValeur());
+		//System.out.println("Date d'enregistrement : " + tableVal.getVal(bdTest.getCon()).get(0).getDate() + ", Valeur : " + tableVal.getVal(bdTest.getCon()).get(0).getValeur() + ", type de fluide : " + tableVal.getVal(bdTest.getCon()).get(0).getTypeFluide() + ", capteur associé : " + tableVal.getVal(bdTest.getCon()).get(0).getValeur());
 		System.out.println(tableVal.getVal(bdTest.getCon()));
 		System.out.println("\n-----MODIFICATION-----");
 		for(int i=0 ; i<tableCap.getCap(bdTest.getCon()).size() ; i++)
