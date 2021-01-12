@@ -27,8 +27,15 @@ public class CurveCanvasModel extends Observable{
 	
 	//search min and max value in listTriee
 	public void setMinMax() {
-		valueMax = new TimedValue(0.0f);
-		valueMin = new TimedValue(0.0f);
+		if (listTriee != null) {
+			valueMax = listTriee.first();
+			valueMin = listTriee.first();
+			
+		}else {
+			valueMax = new TimedValue(0.0f, "007");
+			valueMin = new TimedValue(0.0f, "007");
+		}
+		
 		
 		for(Iterator<TimedValue> it = listTriee.iterator(); it.hasNext();) {
 			TimedValue v = it.next();

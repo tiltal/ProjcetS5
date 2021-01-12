@@ -15,6 +15,7 @@ import javax.swing.JToolBar;
 import donneesDynamique.AnalyseModel;
 import donneesDynamique.Captor;
 import donneesDynamique.CurveCanvasModel;
+import donneesDynamique.TimedValue;
 import donneesDynamique.TypeCaptor;
 
 /**
@@ -101,9 +102,9 @@ public class Analyse extends JPanel implements Observer {
 		CurveCanvas curve3 = new CurveCanvas(model.getCanvas3());
 		
 		//TODO test
-		Captor cap = new Captor("lala", null, 1, "name", TypeCaptor.AIRCOMPRIME);
-		cap.addValue(15);
-		cap.addValue(16);
+		Captor cap = new Captor("lala", "lolo", 1, "lili",TypeCaptor.AIRCOMPRIME);
+		cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
+		cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
 		curve1  = new CurveCanvas(new CurveCanvasModel(cap));
 		
 		graphZone.add(curve1);

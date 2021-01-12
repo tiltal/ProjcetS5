@@ -3,6 +3,7 @@
 import java.util.NavigableSet;
 import java.util.TreeSet;
 import java.util.Map;
+import java.util.Comparator;
 
 /**
  * 
@@ -36,7 +37,28 @@ public class Batiment implements Comparable<Batiment> {
      * @param name
      */
     public Batiment(String name) {
-        this.Captors = new TreeSet<>();
+        this.Captors = new TreeSet<>(new Comparator<Captor>() {
+
+			@Override
+			public int compare(Captor cap1, Captor cap2) {
+				int etage = cap1.getEtage() - cap2.getEtage();
+				if (etage !=0) {
+					return etage;
+				}
+				else {
+					int lieu = cap1.getLieu().compareTo(cap2.getLieu());
+					if (lieu !=0) {
+						return lieu;
+					}
+					else {
+						return cap1.getId().compareTo(cap2.getId());
+					}
+				}
+			}
+        	
+        }
+        		
+        		);
         this.name = name;
         
     }

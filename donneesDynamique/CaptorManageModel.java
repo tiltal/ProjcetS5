@@ -10,8 +10,8 @@ public class CaptorManageModel extends Observable{
 		super();
 		//TODO test
 		Captor cap = new Captor("lala", "du cul", 1, "du fion", TypeCaptor.AIRCOMPRIME);
-		cap.addValue(15);
-		cap.addValue(16);
+		cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
+		cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
 		selectedCaptor = cap; 
 	}
 	public Captor getSelectedCaptor() {

@@ -13,6 +13,7 @@ import javax.swing.JTabbedPane;
 import donneesDynamique.AnalyseModel;
 import donneesDynamique.Captor;
 import donneesDynamique.TempReelTableModel;
+import donneesDynamique.TimedValue;
 import donneesDynamique.TypeCaptor;
 
 
@@ -24,10 +25,12 @@ public class MainFrame extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	//TODO test captors
-	Captor captorTest1 = new Captor("lala", "bat1", 1, "piece1", TypeCaptor.AIRCOMPRIME);
-	Captor captorTest2 = new Captor("lolo", "bat2", 3, "piece2", TypeCaptor.EAU);
+	private Captor captorTest1 = new Captor("lala", "bat1", 1, "piece1", TypeCaptor.AIRCOMPRIME);
+	private Captor captorTest2 = new Captor("lolo", "bat2", 3, "piece2", TypeCaptor.EAU);
+	
+	
 	private JTabbedPane tabbedPane;
-	private JScrollPane tempsReelPannel = new TempsReel(new TempReelTableModel(new ArrayList<Captor>((Arrays.asList(captorTest1, captorTest2)))));
+	private JScrollPane tempsReelPannel;
 	private JPanel analyse = new Analyse(new AnalyseModel());
 	private JPanel captorManage = new CaptorManage();
 	
@@ -38,6 +41,11 @@ public class MainFrame extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 		this.setBounds(100, 100, 800, 800);
+		
+		//TODO test captors
+		captorTest1.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
+		captorTest2.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 16, "777"));
+		tempsReelPannel =  new TempsReel(new TempReelTableModel(new ArrayList<Captor>((Arrays.asList(captorTest1, captorTest2)))));
 		
 		//tabs configuration
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);

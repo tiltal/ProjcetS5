@@ -203,8 +203,8 @@ public class CurveCanvas extends JComponent implements Observer{
 					window.setBounds(0, 0, 800, 800);
 					window.setVisible(true);
 					Captor cap = new Captor("lala", null, 1, "name", TypeCaptor.AIRCOMPRIME);
-					cap.addValue(15);
-					cap.addValue(16);
+					cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
+					cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
 					
 					window.getContentPane().add(new CurveCanvas(new CurveCanvasModel(cap)), BorderLayout.CENTER);
 					

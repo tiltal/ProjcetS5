@@ -1,6 +1,6 @@
 package donneesDynamique;
 
-import java.sql.Time;
+import baseDonnees.Memoire;
 import java.util.*;
 
 /**
@@ -24,6 +24,7 @@ public class Captor implements Comparable<Captor> {
         this.type = type;
         this.on = true;
         this.etat = 0;
+        this.val = new TreeSet<>();
         switch(this.type) {
         case EAU:
         	this.borneMin = 0;
@@ -57,6 +58,7 @@ public class Captor implements Comparable<Captor> {
         this.type = findType(type);
         this.on = true;
         this.etat = 0;
+        this.val = new TreeSet<>();
         switch(this.type) {
         case EAU:
         	this.borneMin = 0;
@@ -123,6 +125,9 @@ public class Captor implements Comparable<Captor> {
     private String lieu;
     
     private TypeCaptor type;
+    
+    private NavigableSet<TimedValue> val;
+    
 
 
 
@@ -175,23 +180,28 @@ public class Captor implements Comparable<Captor> {
     /**
      * @return
      */
-    public ArrayList<TimedValue> getValues() {
-        return new ArrayList<TimedValue>(Arrays.asList(new TimedValue(-5.0f, "2014-12-03T10:15:30.00Z"), new TimedValue(16.0f, "2014-12-03T10:15:35.00Z")));
+    public NavigableSet<TimedValue> getValues() {
+        return val;
     }
 
     /**
      * @return
      */
     public TimedValue getLastValue() {
-        // TODO implement here
-        return null;
+        return val.last();
     }
 
     /**
      * @param valeur
      */
-    public void addValue(float valeur) {
-        
+    public void addValue(TimedValue valeur) {
+    	if (valeur.getValue() < borneMin) {
+    		etat = -1;
+    	}
+    	if(valeur.getValue() > borneMax) {
+    		etat = 1;
+    	}
+    	val.add(valeur);
     }
 
     /**
@@ -236,6 +246,7 @@ public class Captor implements Comparable<Captor> {
     public void setBornes(float inf, float max) {
     	this.borneMin = inf;
     	this.borneMax = max;
+        // TODO implement here
     }
 
 	@Override

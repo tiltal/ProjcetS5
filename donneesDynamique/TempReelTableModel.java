@@ -51,7 +51,7 @@ public class TempReelTableModel extends AbstractTableModel {
 			case 3:
 				return captorList.get(rowIndex).getLieu();
 			case 4:
-				return captorList.get(rowIndex).getLastValue();
+				return captorList.get(rowIndex).getLastValue().getValue();
 			case 5:
 				switch(TypeCaptor.AIRCOMPRIME){//TODO getType()
 						case AIRCOMPRIME:
