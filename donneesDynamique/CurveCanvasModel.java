@@ -1,11 +1,11 @@
 package donneesDynamique;
 
-import java.sql.Time;
+
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.TreeSet;
 
-import sun.security.provider.certpath.AdjacencyList;
+                                 
 
 @SuppressWarnings("deprecation")
 public class CurveCanvasModel extends Observable{

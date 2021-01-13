@@ -31,6 +31,7 @@ public class CurveCanvas extends JComponent implements Observer{
 	//model
 	private CurveCanvasModel model;
 	private int yZero = 0;
+	private float yZeroValue = 0;
 	private int xGradOffset = 10;
 	private long tRange = 0;
 	private int xRange = 0;
@@ -81,9 +82,11 @@ public class CurveCanvas extends JComponent implements Observer{
 		//Xaxis
 		if (model.getValueMin().getValue()>=0) {
 			yZero = this.getHeight()-3;
+			yZeroValue = model.getValueMin().getValue();
 		}
 		else if (model.getValueMax().getValue()<=0) {
 			yZero = 3;
+			yZeroValue = model.getValueMax().getValue();
 		}
 		else {
 			yZero = Math.round(model.getValueMax().getValue()/model.getVRange()*(this.getHeight()-3));
@@ -102,17 +105,17 @@ public class CurveCanvas extends JComponent implements Observer{
 	public void setGraduation(Graphics g) {
 		int maxYGrad = 10;
 		int maxXGrad = 15;
-		int vIncrem = Math.round(model.getVRange()/maxYGrad);
+		float vIncrem = (float)(model.getVRange())/(float)(maxYGrad);
 		int gIncrem = Math.round(this.getHeight()*vIncrem/model.getVRange());
 		xRange = this.getWidth() - 2*xGradOffset;
 		//Y
 		//positiv		
 		for (int i = 0; i*vIncrem<=(model.getValueMax().getValue()); i++) {
-			traceGradYP((yZero - i*gIncrem), ((Integer)(i*vIncrem)).toString(), g);
+			traceGradYP((yZero - i*gIncrem), Float.toString(i*vIncrem + yZeroValue), g);
 		}
 		//negativ
 		for(int i = -1;  i*vIncrem>=(model.getValueMin().getValue()); i--) {
-			traceGradYN((yZero - i*gIncrem), ((Integer)(i*vIncrem)).toString(), g);
+			traceGradYN((yZero - i*gIncrem), Float.toString(i*vIncrem), g);
 		}
 		
 		//X
@@ -175,16 +178,17 @@ public class CurveCanvas extends JComponent implements Observer{
 	
 	public void tracePoint(Graphics g) {
 		g.setColor(Color.BLUE);
+		int rayon = 8;
 		float xRatio =xRange/(float)tRange;
-		float yRatio = this.getHeight()/model.getVRange();
+		float yRatio = (float)this.getHeight()/(float)model.getVRange() ;
 		Instant startInstant = Instant.parse(model.getValueBegin().getTime());
 		
 		for(Iterator<TimedValue> it = model.getListTriee().iterator(); it.hasNext();) {
 			TimedValue currTV = it.next();
 			long timeMilli = startInstant.until(Instant.parse(currTV.getTime()), ChronoUnit.MILLIS);
 			if (currTV.compareTo(model.getValueBegin())>=0 && currTV.compareTo(model.getValueEnd())<=0) {
-				g.drawOval(xGradOffset+3+Math.round(timeMilli*xRatio), yZero - Math.round(currTV.getValue()*yRatio), 6, 6);
-				g.fillOval(xGradOffset+3+Math.round(timeMilli*xRatio), yZero - Math.round(currTV.getValue()*yRatio), 6, 6);
+				//g.drawOval(xGradOffset+3+Math.round(timeMilli*xRatio)-2, yZero - Math.round(currTV.getValue()*yRatio), 6, 6);
+				g.fillOval(xGradOffset+3+Math.round(timeMilli*xRatio)-rayon/2, yZero - Math.round((currTV.getValue()-yZeroValue)*yRatio)-rayon/2, rayon, rayon);
 			}
 		}
 	}
@@ -205,8 +209,8 @@ public class CurveCanvas extends JComponent implements Observer{
 					Captor cap = new Captor("lala", null, 1, "name", TypeCaptor.AIRCOMPRIME);
 					cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
 					cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
-					
-					window.getContentPane().add(new CurveCanvas(new CurveCanvasModel(cap)), BorderLayout.CENTER);
+					CurveCanvasModel model = new CurveCanvasModel(cap);
+					window.getContentPane().add(new CurveCanvas(model), BorderLayout.CENTER);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
