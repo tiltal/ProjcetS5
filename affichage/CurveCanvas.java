@@ -195,7 +195,9 @@ public class CurveCanvas extends JComponent implements Observer{
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+		CurveCanvasModel mod = (CurveCanvasModel)arg0;
+		this.model = mod;
+		this.repaint();
 		
 	}
 	public static void main(String[] args) {

@@ -34,9 +34,9 @@ public class CaptorManage extends JPanel{
 	private JTextField txtSeuilMax;
 	private JTextField txtConnected;
 	
-	public CaptorManage() {
+	public CaptorManage(CaptorManageModel model) {
 		super(new BorderLayout(0,0));
-		model = new CaptorManageModel();		
+		this.model = model;		
 		//setJTree();
 		setInfoPanel();
 		
@@ -88,24 +88,24 @@ public class CaptorManage extends JPanel{
 
 	}
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() { 
-				try {
-					JFrame window = new JFrame("Captor Pannel");
-					window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					window.setBounds(0, 0, 800, 800);
-					window.setVisible(true);
-
-					
-					window.getContentPane().add(new CaptorManage(), BorderLayout.CENTER);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() { 
+//				try {
+//					JFrame window = new JFrame("Captor Pannel");
+//					window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//					window.setBounds(0, 0, 800, 800);
+//					window.setVisible(true);
+//
+//					
+//					window.getContentPane().add(new CaptorManage(), BorderLayout.CENTER);
+//					
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 	
 
 }

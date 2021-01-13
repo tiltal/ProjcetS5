@@ -4,21 +4,28 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+
+import baseDonnees.Memoire;
 import donneesDynamique.AnalyseModel;
 import donneesDynamique.Captor;
+import donneesDynamique.CaptorManageModel;
 import donneesDynamique.TempReelTableModel;
 import donneesDynamique.TimedValue;
 import donneesDynamique.TypeCaptor;
+import donneesDynamique.University;
 
 
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame implements Observer{
 
 	/**
 	 * 
@@ -28,13 +35,18 @@ public class MainFrame extends JFrame{
 	private Captor captorTest1 = new Captor("lala", "bat1", 1, "piece1", TypeCaptor.AIRCOMPRIME);
 	private Captor captorTest2 = new Captor("lolo", "bat2", 3, "piece2", TypeCaptor.EAU);
 	
+	//model
+	private University uModel;
+	private TempReelTableModel tableModel;
+	private AnalyseModel analyseModel;
+	private CaptorManageModel captorManageModel;
 	
 	private JTabbedPane tabbedPane;
 	private JScrollPane tempsReelPannel;
-	private JPanel analyse = new Analyse(new AnalyseModel());
-	private JPanel captorManage = new CaptorManage();
+	private JPanel analyse ;
+	private JPanel captorManage;
 	
-	public MainFrame() {
+	public MainFrame(University uModel) {
 		
 		//main frame configuration
 		super("Projet S5");
@@ -45,7 +57,24 @@ public class MainFrame extends JFrame{
 		//TODO test captors
 		captorTest1.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
 		captorTest2.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 16, "777"));
-		tempsReelPannel =  new TempsReel(new TempReelTableModel(new ArrayList<Captor>((Arrays.asList(captorTest1, captorTest2)))));
+				
+		//model init
+		this.uModel = uModel;
+		
+		ArrayList<Captor> captorList = new ArrayList<>();
+		for(Iterator<String> it = uModel.getAllCaptors().keySet().iterator(); it.hasNext();) {
+			captorList.add(uModel.getAllCaptors().get(it.next()));
+		}
+		tableModel = new TempReelTableModel(captorList);
+		
+		analyseModel = new AnalyseModel();
+		
+		captorManageModel = new CaptorManageModel();
+		
+		//panel itnit
+		tempsReelPannel =  new TempsReel(tableModel);
+		analyse = new Analyse(analyseModel);
+		captorManage = new CaptorManage(captorManageModel);
 		
 		//tabs configuration
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -53,20 +82,28 @@ public class MainFrame extends JFrame{
 		tabbedPane.addTab("Temps reel", null, tempsReelPannel );
 		tabbedPane.addTab("Analyse", null, analyse);
 		tabbedPane.addTab("Capteurs", null, captorManage);
+		
+		uModel.addObserver(this);
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
 
-public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-		public void run() { 
-			try {
-				MainFrame window = new MainFrame();
-				window.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	});
-}
+//public static void main(String[] args) {
+//	EventQueue.invokeLater(new Runnable() {
+//		public void run() { 
+//			try {
+//				MainFrame window = new MainFrame();
+//				window.setVisible(true);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	});
+//}
 }

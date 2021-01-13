@@ -52,7 +52,7 @@ public class TempsReel extends JScrollPane implements Observer {
      * 
      */
     public void update() {
-    	table.tableChanged(null);;
+    
     }
 
 
