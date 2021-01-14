@@ -32,7 +32,8 @@ public class University extends AbstractModel {
     /**
      * Constructor
      */
-    public University(String nom,Memoire memoire) {
+    public University(String nom) {
+    	this.memoire =  new Memoire();
         this.Nom = nom;
         this.Batiments = new TreeSet<>();
         this.Captors = new HashMap<>();

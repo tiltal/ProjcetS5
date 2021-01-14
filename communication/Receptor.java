@@ -12,8 +12,8 @@ public class Receptor {
     /**
      * Default constructor
      */
-    public Receptor(University univ) {
-    	this.univ = univ;
+    public Receptor() {
+    	this.univ =  new University("UPS");
     }
 
 
