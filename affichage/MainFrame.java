@@ -61,15 +61,11 @@ public class MainFrame extends JFrame implements Observer{
 		//model init
 		this.uModel = uModel;
 		
-		ArrayList<Captor> captorList = new ArrayList<>();
-		for(Iterator<String> it = uModel.getAllCaptors().keySet().iterator(); it.hasNext();) {
-			captorList.add(uModel.getAllCaptors().get(it.next()));
-		}
-		tableModel = new TempReelTableModel(captorList);
+		tableModel = uModel.getTableModel();
 		
-		analyseModel = new AnalyseModel();
+		analyseModel = uModel.getAnalyseModel();
 		
-		captorManageModel = new CaptorManageModel();
+		captorManageModel = uModel.getCaptorManageModel();
 		
 		//panel itnit
 		tempsReelPannel =  new TempsReel(tableModel);

@@ -39,6 +39,8 @@ public class University extends AbstractModel {
         this.CaptorFluids = new HashMap<>();
         this.memoire = memoire;
         Instancing();
+        
+        setModels();
     }
     
     private void Instancing() {
@@ -64,6 +66,24 @@ public class University extends AbstractModel {
     		
     	}
     }
+    
+    @Override
+	public void setModels() {
+    	//chage submodels
+    	ArrayList<Captor> captorList = new ArrayList<>();
+		for(Iterator<String> it = getAllCaptors().keySet().iterator(); it.hasNext();) {
+			captorList.add(getAllCaptors().get(it.next()));
+		}
+		tableModel = new TempReelTableModel(captorList);
+		
+		analyseModel = new AnalyseModel();
+		
+		captorManageModel = new CaptorManageModel();
+		
+		//notify view of the submodels changes
+		notifyObserver();
+		
+	}
     
     
     //getters
@@ -109,6 +129,8 @@ public class University extends AbstractModel {
         TimedValue tval= new TimedValue(value, id);
         Captors.get(id).addValue(tval);
         memoire.addValue(tval, id);
+        //change submodels
+        setModels();
     }
 
     /**
@@ -123,6 +145,8 @@ public class University extends AbstractModel {
     		newCaptor(id, batiment, etage, lieu, type);
     	}
     	Captors.get(id).connexion();
+    	//change submodels
+    	setModels();
     }
     
     private void newCaptor(String id, String batiment, int etage, String lieu, String type) {
@@ -181,6 +205,8 @@ public class University extends AbstractModel {
      */
     public void disconnection(String id) {
         Captors.get(id).deconnexion();
+        //change submodels
+    	setModels();
     }
 
     /**
