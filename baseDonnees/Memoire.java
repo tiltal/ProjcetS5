@@ -2,8 +2,11 @@ package baseDonnees;
 
 import donneesDynamique.TimedValue;
 import donneesDynamique.Captor;
+
+import java.util.Iterator;
 import java.util.List;
 import java.util.NavigableSet;
+import java.util.TreeSet;
 
 public class Memoire {
 	private BaseDeDonnees bd;
@@ -42,14 +45,24 @@ public class Memoire {
 	}
 	
 	public NavigableSet<TimedValue> getValue(String id){
-		//TO DO
-		return null;
+		List<TimedValue> list = tableVal.getVal(bd.getCon()); 
+		NavigableSet<TimedValue> values = new TreeSet<>();
+		TimedValue val;
+		for (Iterator<TimedValue> iter = list.iterator(); iter.hasNext();) {
+			val = iter.next();
+			if(val.getIdCap() == id) {
+				values.add(val);
+			}
+			
+		}
+		return values;
 	}
 	
 
 	
 	
-	public void changeBornes(float min, float max) {
-		//TO DO
+	public void changeBornes(float min, float max, String id) {
+		tableCap.updateInfo(bd.getCon(), "UPDATE Capteur SET min = '" + min + "' WHERE id = '" + id + "'");
+		tableCap.updateInfo(bd.getCon(), "UPDATE Capteur SET max = '" + max + "' WHERE id = '" + id + "'");
 	}
 }

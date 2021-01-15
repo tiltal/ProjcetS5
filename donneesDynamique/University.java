@@ -38,7 +38,6 @@ public class University extends AbstractModel {
         this.Batiments = new TreeSet<>();
         this.Captors = new HashMap<>();
         this.CaptorFluids = new HashMap<>();
-        this.memoire = memoire;
         Instancing();
     }
     
@@ -191,6 +190,7 @@ public class University extends AbstractModel {
      */
     public void changeBornes(String id, float inf, float sup) {
         this.Captors.get(id).setBornes(inf, sup);
+        memoire.changeBornes(inf, sup,id);
     }
 
 	@Override

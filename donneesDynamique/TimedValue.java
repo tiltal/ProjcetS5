@@ -9,7 +9,9 @@ public class TimedValue implements Comparable<TimedValue> {
 
     
 
-    /**
+ 
+
+	/**
      * 
      */
     private float value;

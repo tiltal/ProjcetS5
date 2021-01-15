@@ -14,7 +14,7 @@ public class TableCapteur extends Table {
 	List<Captor> cap = new ArrayList<>();
 
 	public TableCapteur() {
-		super("CREATE TABLE Capteur (id VARCHAR(50), typeFluide VARCHAR(20), nomBatiment VARCHAR(20), etage INTEGER, lieu VARCHAR(20), PRIMARY KEY(id))");
+		super("CREATE TABLE Capteur (id VARCHAR(50), typeFluide VARCHAR(20), nomBatiment VARCHAR(20), etage INTEGER, lieu VARCHAR(20), min INTEGER, max INTEGER, PRIMARY KEY(id))");
 		/*
 		 *  il faut penser à faire un updateInfoCap après avoir reçu un message de déconnection d'un capteur 
 		 * if on== false {updateInfoCap (..., "UPDATE Capteur SET connecte = 'N' WHERE nomCapteur = 'nom du capteur à modifier'")}
@@ -67,7 +67,7 @@ public class TableCapteur extends Table {
             while(result.next()) {
 
                 //affecter les champs correspondant avec les informations données par la requête, à la fin la liste de valeurs associée/
-                Captor capteur = new Captor(result.getString(1),result.getString(3),result.getInt(4),result.getString(5),result.getString(2));
+                Captor capteur = new Captor(result.getString(1),result.getString(3),result.getInt(4),result.getString(5),result.getString(2), result.getInt(6), result.getInt(7));
                 cap.add(capteur);
             }
         }catch(SQLException e) {

@@ -50,7 +50,7 @@ public class Captor implements Comparable<Captor> {
         }
     }    
     
-    public Captor(String id, String batiment, int etage, String lieu, String type) {
+    public Captor(String id, String batiment, int etage, String lieu, String type, int min, int max) {
         this.id = id;
         this.batiment = batiment;
         this.etage = etage;
@@ -82,6 +82,8 @@ public class Captor implements Comparable<Captor> {
         
         
         }
+        this.borneMin = min;
+        this.borneMax = max;
     }
 
     /**
