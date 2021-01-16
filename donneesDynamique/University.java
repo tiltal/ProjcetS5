@@ -78,7 +78,7 @@ public class University extends AbstractModel {
 		
 		analyseModel = new AnalyseModel();
 		
-		captorManageModel = new CaptorManageModel();
+		captorManageModel = new CaptorManageModel(Batiments);
 		
 		//notify view of the submodels changes
 		notifyObserver();
