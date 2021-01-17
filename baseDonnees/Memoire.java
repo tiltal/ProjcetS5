@@ -23,7 +23,7 @@ public class Memoire {
 	
 	public void addCap(Captor cap) {
 		String s =  "INSERT INTO Capteur VALUES ('" + cap.getId() + "', '" + cap.getType() + "', '" +
-		cap.getBatiment() + "', " + cap.getEtage() + ", '" + cap.getLieu() + "')";
+		cap.getBatiment() + "', " + cap.getEtage() + ", '" + cap.getLieu() + "', " + cap.getBorneInf() + ", " + cap.getBorneSup() + ")";
 				
 		tableCap.ajouterInfo(bd.getCon(),s);
 	}

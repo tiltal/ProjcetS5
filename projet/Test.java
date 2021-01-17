@@ -40,7 +40,7 @@ public class Test {
 		for(int i=0 ; i<tableCap.getCap(bdTest.getCon()).size() ; i++)
 			System.out.println("Nom capteur : " + tableCap.getCap(bdTest.getCon()).get(i).getId() + ", type de fluide : " + tableCap.getCap(bdTest.getCon()).get(i).getType() );
 		
-		bdTest.viderBd();
+		//bdTest.viderBd();
 		
 	}
 
