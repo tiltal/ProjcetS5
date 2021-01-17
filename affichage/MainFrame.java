@@ -97,7 +97,7 @@ public class MainFrame extends JFrame implements Observer{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() { 
 				try {
-					University model = new University("univ", new Memoire());
+					University model = new University("univ");
 					MainFrame window = new MainFrame(model);
 					window.setVisible(true);
 				} catch (Exception e) {
