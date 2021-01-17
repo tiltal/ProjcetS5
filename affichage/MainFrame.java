@@ -42,7 +42,7 @@ public class MainFrame extends JFrame implements Observer{
 	private CaptorManageModel captorManageModel;
 	
 	private JTabbedPane tabbedPane;
-	private JScrollPane tempsReelPannel;
+	private TempsReel tempsReelPannel;
 	private JPanel analyse ;
 	private JPanel captorManage;
 	
@@ -84,22 +84,26 @@ public class MainFrame extends JFrame implements Observer{
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+		uModel.setModels();
+		
+		
+		
 		
 	}
 
 
 
-//public static void main(String[] args) {
-//	EventQueue.invokeLater(new Runnable() {
-//		public void run() { 
-//			try {
-//				MainFrame window = new MainFrame();
-//				window.setVisible(true);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	});
-//}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() { 
+				try {
+					University model = new University("univ", new Memoire());
+					MainFrame window = new MainFrame(model);
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }

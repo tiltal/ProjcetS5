@@ -88,16 +88,11 @@ public class TempsReel extends JScrollPane implements Observer {
 		
 	}
 
-    /**
-     * 
-     */
-    public void update() {
-    
-    }
-
+ 
 
 	public void update(Observable arg0, Object arg1) {
-		
+//		ArrayList<Captor> captorList = (ArrayList<Captor>)arg1;
+//		model.setCaptoList(captorList);
 	}
 	
 	public static void main(String[] args) {

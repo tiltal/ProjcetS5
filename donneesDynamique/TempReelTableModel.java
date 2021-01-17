@@ -48,6 +48,11 @@ public class TempReelTableModel extends AbstractTableModel {
 	public String getColumnName(int columnIndex) {
         return collumnNames[columnIndex];
     }
+	
+	public void setCaptoList(ArrayList<Captor> captorList) {
+		this.captorList = captorList;
+        fireTableDataChanged();
+    }
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
