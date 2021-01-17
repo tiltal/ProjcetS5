@@ -26,6 +26,7 @@ public class TimedValue implements Comparable<TimedValue> {
      */
     public TimedValue(String time, float value, String idCap) {
         this.value= value;
+    	time = time.replace('/',':');
         this.time = time;      
         this.idCap = idCap;
     }
@@ -34,7 +35,6 @@ public class TimedValue implements Comparable<TimedValue> {
     	this.value = value;
     	this.time = Clock.systemDefaultZone().instant().toString();
     	time = time.replace(':','/');
-    	time = time.substring(0, time.length()-1);
     	this.idCap = idCap;
     }
 
