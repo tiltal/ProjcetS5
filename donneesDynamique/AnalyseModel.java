@@ -11,9 +11,7 @@ import java.util.TreeSet;
 
 @SuppressWarnings("deprecation")
 public class AnalyseModel extends Observable{
-	private CurveCanvasModel canvas1 = null;
-	private CurveCanvasModel canvas2 = null;
-	private CurveCanvasModel canvas3 = null;
+
 	
 	private HashMap<TypeCaptor, NavigableSet<Captor>> captorList;
 	private ArrayList<String> fluidList = new ArrayList<>();
@@ -65,24 +63,7 @@ public class AnalyseModel extends Observable{
 	}
 	
 	
-	public CurveCanvasModel getCanvas1() {
-		return canvas1;
-	}
-	public void setCanvas1(CurveCanvasModel canvas1) {
-		this.canvas1 = canvas1;
-	}
-	public CurveCanvasModel getCanvas2() {
-		return canvas2;
-	}
-	public void setCanvas2(CurveCanvasModel canvas2) {
-		this.canvas2 = canvas2;
-	}
-	public CurveCanvasModel getCanvas3() {
-		return canvas3;
-	}
-	public void setCanvas3(CurveCanvasModel canvas3) {
-		this.canvas3 = canvas3;
-	}
+	
 
 	public HashMap<TypeCaptor, NavigableSet<Captor>> getCaptorList() {
 		return captorList;

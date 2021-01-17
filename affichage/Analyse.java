@@ -48,6 +48,7 @@ public class Analyse extends JPanel implements Observer {
 	public CurveCanvas curve1;
 	public CurveCanvas curve2;
 	public CurveCanvas curve3;
+	public JPanel graphZone;
 	
 
 	/**
@@ -102,28 +103,30 @@ public class Analyse extends JPanel implements Observer {
 		barTimeFilter.add(endDateBox);
 
 		// graph zone
-		JPanel graphZone = new JPanel();
+		graphZone = new JPanel();
 		this.add(graphZone, BorderLayout.CENTER);
 		graphZone.setLayout(new GridLayout(0, 1));
 
-		curve1 = new CurveCanvas(model.getCanvas1());
-		curve2 = new CurveCanvas(model.getCanvas2());
-		curve3 = new CurveCanvas(model.getCanvas3());
+		curve1 = new CurveCanvas(null);
+		curve2 = new CurveCanvas(null);
+		curve3 = new CurveCanvas(null);
 
 //		model.getCanvas1().addObserver(curve1);
 //		model.getCanvas2().addObserver(curve2);
 //		model.getCanvas3().addObserver(curve3);
 
 		// TODO test
-//		Captor cap = new Captor("lala", "lolo", 1, "lili",TypeCaptor.AIRCOMPRIME);
-//		cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
-//		cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
-//		curve1  = new CurveCanvas(new CurveCanvasModel(cap));
+		
 
 		graphZone.add(curve1);
 		graphZone.add(curve2);
 		graphZone.add(curve3);
-
+		graphZone.remove(curve1);
+		Captor cap = new Captor("lala", "lolo", 1, "lili",TypeCaptor.AIRCOMPRIME);
+		cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
+		cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
+		curve1  = new CurveCanvas(new CurveCanvasModel(cap, "2014-12-03T10:15:30.00Z", "2014-12-03T10:16:30.00Z"));
+		graphZone.add(curve1);
 	}
 
 	public void setDateTable() {
@@ -165,9 +168,15 @@ public class Analyse extends JPanel implements Observer {
 			setDateTable();
 		}
 		if (arg1.equals("allCanvas")) {
-			curve1 = new CurveCanvas(model.getCanvas1());
-			curve2 = new CurveCanvas(model.getCanvas2());
-			curve3 = new CurveCanvas(model.getCanvas3());
+			graphZone.remove(curve1);
+			graphZone.remove(curve2);
+			graphZone.remove(curve3);
+			curve1 = new CurveCanvas(new CurveCanvasModel(model.getCap1(), model.getStartDate(), model.getEndDate()));
+			curve2 = new CurveCanvas(new CurveCanvasModel(model.getCap2(), model.getStartDate(), model.getEndDate()));
+			curve3 = new CurveCanvas(new CurveCanvasModel(model.getCap3(), model.getStartDate(), model.getEndDate()));
+			graphZone.add(curve1);
+			graphZone.add(curve2);
+			graphZone.add(curve3);
 		}
 
 	}
@@ -188,10 +197,10 @@ public class Analyse extends JPanel implements Observer {
 
 					cap1.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, cap1.getId()));
 					cap1.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 18, cap1.getId()));
-					cap1.addValue(new TimedValue("2014-13-03T10:16:30.00Z", -1, cap1.getId()));
+					cap1.addValue(new TimedValue("2014-12-03T10:16:50.00Z", -1, cap1.getId()));
 
 					cap2.addValue(new TimedValue("2015-13-03T10:16:30.00Z", (float) -0.5, cap1.getId()));
-					cap2.addValue(new TimedValue("2015-13-03T10:16:37.00Z", 3, cap1.getId()));
+					cap2.addValue(new TimedValue("2015-13-03T10:17:00.00Z", 3, cap1.getId()));
 
 					cap3.addValue(new TimedValue("2014-14-03T10:15:30.00Z", 15, cap1.getId()));
 					cap3.addValue(new TimedValue("2014-15-03T10:15:30.00Z", 15, cap1.getId()));

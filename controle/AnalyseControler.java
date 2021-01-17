@@ -38,23 +38,22 @@ public class AnalyseControler implements ActionListener {
 		} else if (arg0.getSource() == vue.capteur1Box) {
 			vue.model.setCap1((Captor) vue.capteur1Box.getSelectedItem());
 			vue.model.setDateList();
-			vue.model.setCanvas1(new CurveCanvasModel(vue.model.getCap1(), vue.model.getStartDate(), vue.model.getEndDate()));
-			vue.model.getCanvas1().notifyObservers();
+			
 			vue.update( null, "date");
 			
 
 		} else if (arg0.getSource() == vue.capteur2Box) {
 			vue.model.setCap2((Captor) vue.capteur2Box.getSelectedItem());
 			vue.model.setDateList();
-			vue.model.setCanvas2(new CurveCanvasModel(vue.model.getCap2(), vue.model.getStartDate(), vue.model.getEndDate()));
-			vue.model.getCanvas2().notifyObservers();
+			setAllCanvas();
+
 			vue.update(null, "date");
 
 		} else if (arg0.getSource() == vue.capteur3Box) {
 			vue.model.setCap3((Captor) vue.capteur3Box.getSelectedItem());
 			vue.model.setDateList();
-			vue.model.setCanvas3(new CurveCanvasModel(vue.model.getCap3(), vue.model.getStartDate(), vue.model.getEndDate()));
-			vue.model.getCanvas3().notifyObservers();
+			setAllCanvas();
+
 			vue.update(null, "date");
 
 		} else if (arg0.getSource() == vue.startDateBox) {
@@ -72,16 +71,8 @@ public class AnalyseControler implements ActionListener {
 	public void setAllCanvas() {
 		if(vue.model.getDateList() != null) {
 			vue.model.setTimeInterval(vue.model.getDateList().first(), vue.model.getDateList().last());
-			vue.model.setCanvas1(new CurveCanvasModel(vue.model.getCap1(), vue.model.getStartDate(), vue.model.getEndDate()));
-			vue.model.setCanvas2(new CurveCanvasModel(vue.model.getCap2(), vue.model.getStartDate(), vue.model.getEndDate()));
-			vue.model.setCanvas3(new CurveCanvasModel(vue.model.getCap3(), vue.model.getStartDate(), vue.model.getEndDate()));
-			vue.model.getCanvas1().addObserver(vue.curve1);
-			vue.model.getCanvas2().addObserver(vue.curve2);
-			vue.model.getCanvas3().addObserver(vue.curve3);
 			vue.update(null, "allCanvas");
-			vue.model.getCanvas1().notifyObservers();
-			vue.model.getCanvas2().notifyObservers();
-			vue.model.getCanvas3().notifyObservers();
+
 		}
 	}
 	

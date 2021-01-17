@@ -121,7 +121,8 @@ public class CurveCanvas extends JComponent implements Observer{
 		//X
 		gIncrem = xRange/maxXGrad;
 		Instant startInstant = Instant.parse(model.getStartDate());
-		tRange = startInstant.until(Instant.parse(model.getEndDate()), ChronoUnit.MILLIS);
+		Instant endInstant = Instant.parse(model.getEndDate());
+		tRange = startInstant.until(endInstant, ChronoUnit.MILLIS);
 		long tIncrement = tRange/maxXGrad;
 		
 		//if time range is under 1 hour
@@ -199,7 +200,7 @@ public class CurveCanvas extends JComponent implements Observer{
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println("update canvas");
+		System.out.println();
 		this.repaint();
 		
 	}
@@ -215,7 +216,7 @@ public class CurveCanvas extends JComponent implements Observer{
 					cap.addValue(new TimedValue("2014-12-03T10:15:00.00Z", 15, "888"));
 					cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", -1, "888"));
 					cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
-					cap.addValue(new TimedValue("2014-12-03T10:17:30.00Z", 18, "888"));
+					cap.addValue(new TimedValue("2015-13-03T10:17:00.00Z", 18, "888"));
 					CurveCanvasModel model = new CurveCanvasModel(cap, "2014-12-03T10:15:00.00Z", "2014-12-03T10:17:30.00Z");
 					window.getContentPane().add(new CurveCanvas(model), BorderLayout.CENTER);
 					
