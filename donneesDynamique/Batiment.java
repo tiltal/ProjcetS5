@@ -86,7 +86,7 @@ public class Batiment implements Comparable<Batiment> {
 
 	@Override
 	public String toString() {
-		return "Batiment [name=" + name + "]";
+		return "Batiment " + name ;
 	}
 
 

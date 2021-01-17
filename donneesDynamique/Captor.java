@@ -253,6 +253,10 @@ public class Captor implements Comparable<Captor> {
 
 	@Override
 	public String toString() {
+		return id ;
+	}
+	
+	public String toStringAuto() {
 		return "Captor [id=" + id + ", etat=" + etat + ", on=" + on + ", batiment=" + batiment + ", etage=" + etage
 				+ ", borneMin=" + borneMin + ", borneMax=" + borneMax + ", lieu=" + lieu + ", type=" + type + "]";
 	}

@@ -23,7 +23,7 @@ public class AbstractControler {
      * @param AbstractModel
      */
     public void AbstractControler(AbstractModel model) {
-        // TODO implement here
+        this.model = model;
     }
 
 }
