@@ -1,6 +1,8 @@
 package donneesDynamique;
 
 import java.util.Observable;
+import java.util.ArrayList;
+import java.util.Observer;
 
 /**
  * 
@@ -11,19 +13,22 @@ public abstract class AbstractModel extends Observable {
 	TempReelTableModel tableModel;
 	AnalyseModel analyseModel;
 	CaptorManageModel captorManageModel;
+	private ArrayList<Observer> lo;
 
     /**
      * Default constructor
      */
     public AbstractModel() {
+    	super();
+    	lo = new ArrayList<>();
     }
 
 
     /**
      * 
      */
-    public void addObserver() {
-        // TODO implement here
+    public void addObserver(Observer obs) {
+        lo.add(obs);
     }
 
     /**
@@ -33,6 +38,9 @@ public abstract class AbstractModel extends Observable {
         tableModel.fireTableDataChanged();
         analyseModel.notifyObservers();
         captorManageModel.notifyObservers();
+        for(Observer ob : lo) {
+        	ob.update(null, null);
+        }
     }
 
     /**

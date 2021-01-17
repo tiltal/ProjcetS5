@@ -69,7 +69,7 @@ public class AnalyseControler implements ActionListener {
 	}
 	
 	public void setAllCanvas() {
-		if(vue.model.getDateList() != null) {
+		if(vue.model.getDateList() != null && !vue.model.getDateList().isEmpty()) {
 			vue.model.setTimeInterval(vue.model.getDateList().first(), vue.model.getDateList().last());
 			vue.update(null, "allCanvas");
 

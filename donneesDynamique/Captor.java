@@ -190,10 +190,15 @@ public class Captor implements Comparable<Captor> {
      * @return
      */
     public TimedValue getLastValue() {
-        return val.last();
+        if (val.isEmpty()) {
+        	return null;
+        }
+        else {
+        	return val.last();
+    
+        }
     }
-
-    /**
+     /**
      * @param valeur
      */
     public void addValue(TimedValue valeur) {
@@ -248,8 +253,11 @@ public class Captor implements Comparable<Captor> {
     public void setBornes(float inf, float max) {
     	this.borneMin = inf;
     	this.borneMax = max;
-        // TODO implement here
     }
+
+	public void setVal(NavigableSet<TimedValue> val) {
+		this.val = val;
+	}
 
 	@Override
 	public String toString() {

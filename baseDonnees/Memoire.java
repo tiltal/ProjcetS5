@@ -50,7 +50,7 @@ public class Memoire {
 		TimedValue val;
 		for (Iterator<TimedValue> iter = list.iterator(); iter.hasNext();) {
 			val = iter.next();
-			if(val.getIdCap() == id) {
+			if(val.getIdCap().equals(id)) {
 				values.add(val);
 			}
 			

@@ -58,6 +58,7 @@ public class Analyse extends JPanel implements Observer {
 		super();
 		// init model
 		this.model = model;
+		model.addObserver(this);
 
 		this.setLayout(new BorderLayout(0, 0));
 		// add Toolbars
@@ -115,18 +116,12 @@ public class Analyse extends JPanel implements Observer {
 //		model.getCanvas2().addObserver(curve2);
 //		model.getCanvas3().addObserver(curve3);
 
-		// TODO test
+
 		
 
 		graphZone.add(curve1);
 		graphZone.add(curve2);
 		graphZone.add(curve3);
-		graphZone.remove(curve1);
-		Captor cap = new Captor("lala", "lolo", 1, "lili",TypeCaptor.AIRCOMPRIME);
-		cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", 15, "888"));
-		cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
-		curve1  = new CurveCanvas(new CurveCanvasModel(cap, "2014-12-03T10:15:30.00Z", "2014-12-03T10:16:30.00Z"));
-		graphZone.add(curve1);
 	}
 
 	public void setDateTable() {
@@ -161,6 +156,7 @@ public class Analyse extends JPanel implements Observer {
 	public void update() {
 		setCaptorFilter();
 		setDateTable();
+		System.out.println("update1");
 	}
 
 	public void update(Observable arg0, Object arg1) {
@@ -177,6 +173,7 @@ public class Analyse extends JPanel implements Observer {
 			graphZone.add(curve1);
 			graphZone.add(curve2);
 			graphZone.add(curve3);
+			System.out.println("update2");
 		}
 
 	}

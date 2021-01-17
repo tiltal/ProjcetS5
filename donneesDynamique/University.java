@@ -33,6 +33,7 @@ public class University extends AbstractModel {
      * Constructor
      */
     public University(String nom) {
+    	super();
     	this.memoire =  new Memoire();
         this.Nom = nom;
         this.Batiments = new TreeSet<>();
@@ -49,6 +50,7 @@ public class University extends AbstractModel {
     	CaptorFluids.put(TypeCaptor.ELECTRICITE, new TreeSet<Captor>());
     	CaptorFluids.put(TypeCaptor.TEMPERATURE, new TreeSet<Captor>());
     	List<Captor> caps = memoire.getCap();
+    	NavigableSet<TimedValue> val;
     	Captor captor;
     	Batiment bat;
     	for (Iterator<Captor> iter = caps.iterator(); iter.hasNext();) {
@@ -61,6 +63,8 @@ public class University extends AbstractModel {
     		else {
     			this.Batiments.headSet(new Batiment(captor.getBatiment()), true).first().addCaptor(captor);
     		}
+    		val = memoire.getValue(captor.getId());
+    		captor.setVal(val);
     		this.Captors.put(captor.getId(), captor);
     		this.CaptorFluids.get(captor.getType()).add(captor);
     		
@@ -81,7 +85,10 @@ public class University extends AbstractModel {
 		captorManageModel = new CaptorManageModel(Batiments);
 		
 		//notify view of the submodels changes
-		notifyObserver();
+		tableModel.fireTableStructureChanged();
+		tableModel.fireTableDataChanged();
+        analyseModel.notifyObservers();
+        captorManageModel.notifyObservers();
 		
 	}
     
@@ -130,7 +137,7 @@ public class University extends AbstractModel {
         Captors.get(id).addValue(tval);
         memoire.addValue(tval, id);
         //change submodels
-        setModels();
+        this.notifyObserver();
     }
 
     /**
@@ -146,7 +153,7 @@ public class University extends AbstractModel {
     	}
     	Captors.get(id).connexion();
     	//change submodels
-    	setModels();
+        this.notifyObserver();
     }
     
     private void newCaptor(String id, String batiment, int etage, String lieu, String type) {
@@ -206,7 +213,7 @@ public class University extends AbstractModel {
     public void disconnection(String id) {
         Captors.get(id).deconnexion();
         //change submodels
-    	setModels();
+        this.notifyObserver();
     }
 
     /**

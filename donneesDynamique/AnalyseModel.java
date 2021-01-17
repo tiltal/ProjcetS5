@@ -16,6 +16,7 @@ public class AnalyseModel extends Observable{
 	private HashMap<TypeCaptor, NavigableSet<Captor>> captorList;
 	private ArrayList<String> fluidList = new ArrayList<>();
 	private TreeSet<String> dateList = new TreeSet<>();
+	
 
 	
 	private TypeCaptor fluid = TypeCaptor.AIRCOMPRIME;
@@ -43,6 +44,7 @@ public class AnalyseModel extends Observable{
 	public void setTimeInterval(String startDate, String endDate) {
 		this.startDate = startDate;
 		this.endDate = endDate;
+		notifyObservers();
 	}
 	
 	public void setDateList() {
@@ -50,6 +52,7 @@ public class AnalyseModel extends Observable{
 		addDateToList(cap1);
 		addDateToList(cap2);
 		addDateToList(cap3);
+		notifyObservers();
 		
 	}
 	

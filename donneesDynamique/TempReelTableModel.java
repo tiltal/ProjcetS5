@@ -66,17 +66,22 @@ public class TempReelTableModel extends AbstractTableModel {
 			case 3:
 				return captorList.get(rowIndex).getLieu();
 			case 4:
+				if (captorList.get(rowIndex).getLastValue() == null) {
+					return null;
+				}
+				else {
 				return captorList.get(rowIndex).getLastValue().getValue();
+				}
 			case 5:
-				switch(TypeCaptor.AIRCOMPRIME){
+				switch(captorList.get(rowIndex).getType()){
 						case AIRCOMPRIME:
 							return "psi";
 						case EAU:
-							return "mÂ³/s";
+							return "m³/s";
 						case ELECTRICITE:
 							return "W";
 						case TEMPERATURE:
-							return "Â°c";
+							return "°c";
 						default:
 							return null;
 				}

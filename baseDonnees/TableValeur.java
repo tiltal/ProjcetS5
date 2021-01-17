@@ -54,7 +54,7 @@ public class TableValeur extends Table {
             while(result.next()) {
 
                 //affecter les champs correspondant avec les informations données par la requête, à la fin la liste de valeurs associée/
-            	TimedValue valeur = new TimedValue(result.getString(2),result.getFloat(3),result.getString(4));
+            	TimedValue valeur = new TimedValue(result.getString(2),result.getFloat(3),result.getString(5));
                 val.add(valeur);
             }
         }catch(SQLException e) {
