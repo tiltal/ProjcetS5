@@ -1,9 +1,14 @@
 package donneesDynamique;
 
 
+import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 
 
 
@@ -23,6 +28,11 @@ public class TempReelTableModel extends AbstractTableModel {
 		
 		this.captorList = captorList;
 		
+		
+	}
+	
+	public Captor getCaptorAt(int row) {
+		return captorList.get(row);
 	}
   
 	@Override
@@ -53,7 +63,7 @@ public class TempReelTableModel extends AbstractTableModel {
 			case 4:
 				return captorList.get(rowIndex).getLastValue().getValue();
 			case 5:
-				switch(TypeCaptor.AIRCOMPRIME){//TODO getType()
+				switch(TypeCaptor.AIRCOMPRIME){
 						case AIRCOMPRIME:
 							return "psi";
 						case EAU:
@@ -69,5 +79,9 @@ public class TempReelTableModel extends AbstractTableModel {
 				return null;
 		}
 	}
+	
+
+
+	
 
 }

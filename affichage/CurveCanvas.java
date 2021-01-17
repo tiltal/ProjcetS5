@@ -216,7 +216,7 @@ public class CurveCanvas extends JComponent implements Observer{
 					cap.addValue(new TimedValue("2014-12-03T10:15:00.00Z", 15, "888"));
 					cap.addValue(new TimedValue("2014-12-03T10:15:30.00Z", -1, "888"));
 					cap.addValue(new TimedValue("2014-12-03T10:16:30.00Z", 16, "888"));
-					cap.addValue(new TimedValue("2015-13-03T10:17:00.00Z", 18, "888"));
+					//cap.addValue(new TimedValue("2015-13-03T10:17:30.00Z", 18, "888"));
 					CurveCanvasModel model = new CurveCanvasModel(cap, "2014-12-03T10:15:00.00Z", "2014-12-03T10:17:30.00Z");
 					window.getContentPane().add(new CurveCanvas(model), BorderLayout.CENTER);
 					
