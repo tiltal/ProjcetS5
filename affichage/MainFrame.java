@@ -89,6 +89,9 @@ public class MainFrame extends JFrame implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		uModel.setModels();
+		analyse.update();
+		captorManage.update(null, null);
+		tempsReelPannel.update(null, null);
 		tempsReelPannel.repaint();
 		analyse.repaint();
 		captorManage.repaint();
