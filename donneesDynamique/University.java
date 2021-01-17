@@ -76,7 +76,7 @@ public class University extends AbstractModel {
 		}
 		tableModel = new TempReelTableModel(captorList);
 		
-		analyseModel = new AnalyseModel();
+		analyseModel = new AnalyseModel(getAllCaptorsFluid());
 		
 		captorManageModel = new CaptorManageModel(Batiments);
 		
