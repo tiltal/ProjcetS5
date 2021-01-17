@@ -11,8 +11,8 @@ public class Serveur implements Runnable{
    ServerSocket server;
    private Receptor recep;
     
-   public Serveur(){
-       this.recep = new Receptor();
+   public Serveur(University univ){
+       this.recep = new Receptor(univ);
       try {
     server = new ServerSocket(PORT);
       } catch (IOException e) {

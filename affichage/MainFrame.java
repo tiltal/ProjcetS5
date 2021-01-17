@@ -15,6 +15,7 @@ import javax.swing.JTabbedPane;
 
 
 import baseDonnees.Memoire;
+import communication.Serveur;
 import donneesDynamique.AnalyseModel;
 import donneesDynamique.Captor;
 import donneesDynamique.CaptorManageModel;
@@ -98,6 +99,11 @@ public class MainFrame extends JFrame implements Observer{
 			public void run() { 
 				try {
 					University model = new University("univ");
+					Serveur s = new Serveur(model);
+					Thread t = new Thread(s);
+					t.start();
+					
+					
 					MainFrame window = new MainFrame(model);
 					window.setVisible(true);
 				} catch (Exception e) {
