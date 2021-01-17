@@ -45,6 +45,10 @@ public class Analyse extends JPanel implements Observer {
 	public JComboBox<Captor> capteur3Box = new JComboBox<>();
 	public JComboBox<String> startDateBox = new JComboBox<>();
 	public JComboBox<String> endDateBox = new JComboBox<>();
+	public CurveCanvas curve1;
+	public CurveCanvas curve2;
+	public CurveCanvas curve3;
+	
 
 	/**
 	 * Default constructor
@@ -102,9 +106,9 @@ public class Analyse extends JPanel implements Observer {
 		this.add(graphZone, BorderLayout.CENTER);
 		graphZone.setLayout(new GridLayout(0, 1));
 
-		CurveCanvas curve1 = new CurveCanvas(model.getCanvas1());
-		CurveCanvas curve2 = new CurveCanvas(model.getCanvas2());
-		CurveCanvas curve3 = new CurveCanvas(model.getCanvas3());
+		curve1 = new CurveCanvas(model.getCanvas1());
+		curve2 = new CurveCanvas(model.getCanvas2());
+		curve3 = new CurveCanvas(model.getCanvas3());
 
 //		model.getCanvas1().addObserver(curve1);
 //		model.getCanvas2().addObserver(curve2);
@@ -127,6 +131,11 @@ public class Analyse extends JPanel implements Observer {
 		String[] s = Arrays.asList(model.getDateList().toArray()).toArray(new String[model.getDateList().size()]);
 		startDateBox.setModel(new DefaultComboBoxModel<String>(s));
 		endDateBox.setModel(new DefaultComboBoxModel<String>(s));
+		if (!model.getDateList().isEmpty()) {
+			startDateBox.setSelectedItem(model.getDateList().first());
+			startDateBox.setSelectedItem(model.getDateList().last());
+		}
+		
 	}
 
 	public void setCaptorFilter() {
@@ -154,6 +163,11 @@ public class Analyse extends JPanel implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		if (arg1.equals("date")) {
 			setDateTable();
+		}
+		if (arg1.equals("allCanvas")) {
+			curve1 = new CurveCanvas(model.getCanvas1());
+			curve2 = new CurveCanvas(model.getCanvas2());
+			curve3 = new CurveCanvas(model.getCanvas3());
 		}
 
 	}
